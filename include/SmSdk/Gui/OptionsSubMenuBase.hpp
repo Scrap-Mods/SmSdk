@@ -24,6 +24,10 @@ public:
 	void onScrollChangePos(MyGUI::ScrollBar* caller, std::size_t pos);
 	void onScroll(MyGUI::Widget* caller, int scroll_val);
 	void updateScrollArea();
+	void updateScrollAreaAndScrollBar();
+	//Does not update the scroll bar
+	void clearSilent();
+	void clear();
 
 	virtual void initialize(MyGUI::Widget* parent);
 	virtual void cleanOptionItems();

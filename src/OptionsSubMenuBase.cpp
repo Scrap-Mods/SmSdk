@@ -69,6 +69,26 @@ void OptionsSubMenuBase::updateScrollArea()
 	}
 }
 
+void OptionsSubMenuBase::updateScrollAreaAndScrollBar()
+{
+	this->updateScrollArea();
+	m_pScrollBar->setVisible(m_scrollValue > 0);
+}
+
+void OptionsSubMenuBase::clearSilent()
+{
+	this->cleanOptionItems();
+
+	m_leftStackBox.clearItems();
+	m_rightStackBox.clearItems();
+}
+
+void OptionsSubMenuBase::clear()
+{
+	this->clearSilent();
+	this->updateScrollAreaAndScrollBar();
+}
+
 void OptionsSubMenuBase::initialize(MyGUI::Widget* parent)
 {
 	m_pSubMenuWidget = MyGUI::LayoutManager::getInstance().loadLayout(
