@@ -1,6 +1,6 @@
 #pragma once
 
-#include <json/json.h>
+#include "SmSdk/jsoncpp_include.hpp"
 
 #include <unordered_map>
 #include <functional>

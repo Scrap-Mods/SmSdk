@@ -4,6 +4,7 @@
 #include "SmSdk/Gui/InGameGuiManager.hpp"
 #include "SmSdk/DirectoryManager.hpp"
 #include "SmSdk/CharacterManager.hpp"
+#include "SmSdk/Physics/Physics.hpp"
 #include "SmSdk/PlayerManager.hpp"
 #include "SmSdk/NetObjManager.hpp"
 #include "SmSdk/AudioManager.hpp"
@@ -16,10 +17,6 @@
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
-
-#if defined(SMSDK_ENABLE_PHYSICS)
-#include "SmSdk/Physics/Physics.hpp"
-#endif
 
 //A file that contains all the offsets
 #include "SmSdk/offsets.hpp"
@@ -44,10 +41,7 @@ GET_INSTANCE_DEFINE(NetObjManager, SM_NET_OBJ_MANAGER_OFFSET);
 GET_INSTANCE_DEFINE(AudioManager, SM_AUDIO_MANAGER_OFFSET);
 GET_INSTANCE_DEFINE(InputManager, SM_INPUT_MANAGER_OFFSET);
 GET_INSTANCE_DEFINE(MyPlayer, SM_MY_PLAYER_OFFSET);
-
-#if defined(SMSDK_ENABLE_PHYSICS)
 GET_INSTANCE_DEFINE(Physics, SM_PHYSICS_OFFSET);
-#endif
 
 PTR_GETTER_DEFINE(GameState, GetCurrentState, SM_CURRENT_GAME_STATE_OFFSET);
 

@@ -1,9 +1,7 @@
 #pragma once
 
+#include "SmSdk/fmod_include.hpp"
 #include "SmSdk/Base/Task.hpp"
-
-#include <fmod/fmod_studio.hpp>
-#include <fmod/fmod.hpp>
 
 #include <memory>
 #include <string>

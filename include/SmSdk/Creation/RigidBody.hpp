@@ -1,10 +1,10 @@
 #pragma once
 
+#include "SmSdk/bullet_include.hpp"
 #include "SmSdk/Base/NetObj.hpp"
+
 #include "ChildShape.hpp"
 #include "Joint.hpp"
-
-#include <BulletCollision/CollisionShapes/btCompoundShape.h>
 
 #include <unordered_set>
 #include <vector>
