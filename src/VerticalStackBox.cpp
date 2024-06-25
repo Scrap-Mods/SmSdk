@@ -1,8 +1,11 @@
 #include "SmSdk/Gui/VerticalStackBox.hpp"
 #include "SmSdk/Gui/GuiSystemManager.hpp"
 
+#include "SmSdk/unreferenced_params.hpp"
 #include "SmSdk/Util/Memory.hpp"
 #include "SmSdk/offsets.hpp"
+
+#if defined(SMSDK_ENABLE_MYGUI)
 
 VerticalStackBox::VerticalStackBox(MyGUI::IntSize item_sz)
 	: m_itemSize(item_sz),
@@ -22,11 +25,14 @@ VerticalStackBox::VerticalStackBox(MyGUI::IntSize item_sz)
 
 void VerticalStackBox::onParentChangeCoord(MyGUI::Widget* caller)
 {
+	SMSDK_UNREF(caller);
 	this->updateScrollBar();
 }
 
 void VerticalStackBox::onPanelScroll(MyGUI::Widget* caller, int scroll_val)
 {
+	SMSDK_UNREF(caller);
+
 	m_panelPos.top = GuiSystemManager::ProcessScroll(
 		m_scrollValue, m_scrollDistance, m_panelPos.top, scroll_val,
 		GuiSystemManager::GetInstance()->getOptionItemSize2());
@@ -38,6 +44,8 @@ void VerticalStackBox::onPanelScroll(MyGUI::Widget* caller, int scroll_val)
 
 void VerticalStackBox::onScrollbarChangePosition(MyGUI::ScrollBar* caller, size_t pos)
 {
+	SMSDK_UNREF(caller);
+
 	if (!m_pParent->getVisible())
 		return;
 
@@ -177,3 +185,5 @@ void VerticalStackBox::clearItems()
 	m_vecWidgets.clear();
 	m_pEmptyPanel->setSize(m_pEmptyPanel->getWidth(), 0);
 }
+
+#endif

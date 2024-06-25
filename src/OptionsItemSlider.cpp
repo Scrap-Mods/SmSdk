@@ -1,5 +1,7 @@
 #include "SmSdk/Gui/OptionsItemSlider.hpp"
 
+#if defined(SMSDK_ENABLE_MYGUI)
+
 OptionsItemSlider::OptionsItemSlider(
 	MyGUI::Widget* widget,
 	const std::string& caption,
@@ -43,3 +45,5 @@ float OptionsItemSlider::getFraction()
 	const float v_fraction = float(m_pSlider->getScrollPosition()) / float(m_uSteps);
 	return lerp(m_fMinValue, m_fMaxValue, v_fraction);
 }
+
+#endif

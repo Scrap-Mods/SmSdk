@@ -12,6 +12,8 @@ class OptionsItemSlider : public OptionsItemBase
 {
 public:
 	virtual ~OptionsItemSlider() = default;
+
+#if defined(SMSDK_ENABLE_MYGUI)
 	OptionsItemSlider(
 		MyGUI::Widget* widget,
 		const std::string& caption,
@@ -22,6 +24,8 @@ public:
 	void initializeSlider(MyGUI::Widget* parent, const std::string& caption);
 	void updateValueText();
 	float getFraction();
+#endif
+
 	void update() override {}
 
 public:

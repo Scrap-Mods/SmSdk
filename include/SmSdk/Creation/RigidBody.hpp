@@ -12,12 +12,12 @@
 class RigidBody : public NetObj
 {
 public:
-	inline ChildShape* getChildShape(int id)
+	inline ChildShape* getChildShape(int child_id)
 	{
-		if (id < 0 || id >= m_vecChildShapes.size())
+		if (child_id < 0 || child_id >= m_vecChildShapes.size())
 			return nullptr;
 
-		return m_vecChildShapes[id].get();
+		return m_vecChildShapes[child_id].get();
 	}
 
 private:
