@@ -35,12 +35,12 @@ void OptionsItemSlider::updateValueText()
 	m_pValueTextBox->setCaption(std::to_string(m_pSlider->getScrollPosition()));
 }
 
-inline float lerp(float a, float b, float f)
+inline static float lerp(float a, float b, float f)
 {
 	return a + f * (b - a);
 }
 
-float OptionsItemSlider::getFraction()
+float OptionsItemSlider::getFraction() const
 {
 	const float v_fraction = float(m_pSlider->getScrollPosition()) / float(m_uSteps);
 	return lerp(m_fMinValue, m_fMaxValue, v_fraction);

@@ -23,7 +23,7 @@ public:
 
 	void initializeSlider(MyGUI::Widget* parent, const std::string& caption);
 	void updateValueText();
-	float getFraction();
+	float getFraction() const;
 #endif
 
 	void update() override {}

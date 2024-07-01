@@ -1,5 +1,6 @@
 #pragma once
 
+#include "SmSdk/unreferenced_params.hpp"
 #include "SmSdk/mygui_include.hpp"
 #include "SmSdk/Util/Memory.hpp"
 #include "SmSdk/offsets.hpp"

@@ -17,6 +17,7 @@
 //#define SMSDK_ENABLE_JSONCPP
 //#define SMSDK_ENABLE_FMOD
 //#define SMSDK_ENABLE_STEAMAPI
+//#define SMSDK_ENABLE_MYGUI
 
 // WARNING: All the map getters will be wrong without the Boost uuid library
 //#define SMSDK_ENABLE_BOOST

@@ -6,6 +6,7 @@
 #if defined(SMSDK_ENABLE_MYGUI)
 #include "MyGUI.h"
 #define DEFAULT_IMPL(...)
+#define DEFAULT_IMPL_UNREF(...)
 #else
 
 #define DEFAULT_IMPL(...) { __VA_ARGS__ }
@@ -33,7 +34,7 @@ namespace MyGUI
 		float red, green, blue, alpha;
 	};
 
-	class DirectX11Platform {};
+	
 	class Gui {};
 	class Widget {};
 	class ScrollBar {};
@@ -42,3 +43,8 @@ namespace MyGUI
 }
 
 #endif
+
+namespace MyGUI
+{
+	class DirectX11Platform {};
+}
