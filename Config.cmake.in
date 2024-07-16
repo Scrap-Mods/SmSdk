@@ -1,0 +1,4 @@
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/@SMSDK@Targets.cmake")
+check_required_components("@SMSDK@")
