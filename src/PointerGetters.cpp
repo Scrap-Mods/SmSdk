@@ -11,6 +11,7 @@
 #include "SmSdk/InputManager.hpp"
 #include "SmSdk/StaticValues.hpp"
 #include "SmSdk/GameSettings.hpp"
+#include "SmSdk/Pathfinder.hpp"
 #include "SmSdk/GameState.hpp"
 #include "SmSdk/MyPlayer.hpp"
 
@@ -30,7 +31,9 @@
 #define GET_INSTANCE_DEFINE(type, val) PTR_GETTER_DEFINE(type, GetInstance, val)
 
 /////////GETTER DEFINITIONS
-
+ 
+GET_INSTANCE_DEFINE(Pathfinder, SM_PATH_FINDER);
+GET_INSTANCE_DEFINE(PortalManager, SM_PORTAL_MANAGER);
 GET_INSTANCE_DEFINE(HarvestableManager, SM_HARVESTABLE_MANAGER_OFFSET);
 GET_INSTANCE_DEFINE(DirectoryManager, SM_DIRECTORY_MANAGER_OFFSET);
 GET_INSTANCE_DEFINE(InGameGuiManager, SM_IN_GAME_GUI_MANAGER_OFFSET);
