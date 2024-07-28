@@ -10,6 +10,8 @@
 #include <BulletDynamics/Dynamics/btRigidBody.h>
 #else
 struct btRigidBody {};
+struct btBoxShape {};
+struct btPairCachingGhostObject {};
 struct btCollisionObject {};
 struct btHingeConstraint {};
 struct btCompoundShape {

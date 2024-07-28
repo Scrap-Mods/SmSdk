@@ -1,52 +1,43 @@
 #pragma once
 
-#include <unordered_map>
+#include "SmSdk/AreaTriggerManager.hpp"
+
 #include <DirectXMath.h>
+
+#include <unordered_map>
 #include <memory>
 
-class PortalData {
+struct Portal : public NetObj
+{
 private:
-    /* 0x0000 */ char pad0x0[0x40];
+	/* 0x0028 */ char pad_0x28[0x8];
 public:
-    /* 0x0040 */ DirectX::XMFLOAT3 position;
-}; // Size: 0x60
-
-static_assert(sizeof(PortalData) == 0x60, "PortalData: Incorrect Size");
-
-class PortalOpening {
+	/* 0x0030 */ DirectX::XMFLOAT3 m_position;
 private:
-    /* 0x0000 */ char pad0x0[0x38];
+	/* 0x003C */ char pad_0x3C[0x4];
 public:
-    /* 0x0038 */ PortalData* data;
-}; // Size: 0x60
-
-static_assert(sizeof(PortalOpening) == 0x60, "PortalOpening: Incorrect Size");
-
-class Portal {
-private:
-    /* 0x0000 */ char pad0x0[0x10];
-public:
-    /* 0x0010 */ std::shared_ptr<Portal> self_ptr;
-    /* 0x0020 */ __int32 Id;
-    /* 0x0024 */ __int32 some_value;
-private:
-    /* 0x0028 */ char pad0x28[0x18];
-public:
-    /* 0x0040 */ PortalOpening* opening_a;
-    /* 0x0048 */ PortalOpening* opening_b;
+	/* 0x0040 */ AreaTrigger* m_pAreaTriggerA;
+	/* 0x0048 */ AreaTrigger* m_pAreaTriggerB;
 }; // Size: 0x50
+
+static_assert(offsetof(Portal, Portal::m_position) == 0x30, "Portal::m_position: Incorrect offset");
+static_assert(offsetof(Portal, Portal::m_pAreaTriggerA) == 0x40, "Portal::m_pAreaTriggerA: Incorrect offset");
+static_assert(offsetof(Portal, Portal::m_pAreaTriggerB) == 0x48, "Portal::m_pAreaTriggerB: Incorrect offset");
 
 static_assert(sizeof(Portal) == 0x50, "Portal: Incorrect Size");
 
-class PortalManager {
-public:
+
+
+struct PortalManager
+{
     static PortalManager* GetInstance();
 
-    /* 0x0000 */ std::unordered_map<int, std::shared_ptr<Portal>> portal_map;
+	/* 0x0000 */ std::unordered_map<int, std::shared_ptr<Portal>> m_mapPortals;
 private:
-    /* 0x0064 */ char pad0x64[0x34];
-
-    // After this comes the "PortalHooks", they contain names and other stuff
+	/* 0x0040 */ char pad_0x40[0x58];
+    
 }; // Size: 0x98
+
+static_assert(offsetof(PortalManager, PortalManager::m_mapPortals) == 0x0, "PortalManager::m_mapPortals: Incorrect offset");
 
 static_assert(sizeof(PortalManager) == 0x98, "PortalManager: Incorrect Size");
