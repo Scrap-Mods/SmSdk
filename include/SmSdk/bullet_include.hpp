@@ -7,6 +7,7 @@
 #include <BulletDynamics/ConstraintSolver/btHingeConstraint.h>
 #include <BulletCollision/CollisionShapes/btCompoundShape.h>
 #include <BulletCollision/CollisionDispatch/btGhostObject.h>
+#include <BulletCollision/CollisionShapes/btBoxShape.h>
 #include <BulletDynamics/Dynamics/btRigidBody.h>
 #else
 struct btRigidBody {};
