@@ -5,8 +5,8 @@
 
 #if defined(SMSDK_ENABLE_MYGUI)
 
-OptionsSubMenuBase::OptionsSubMenuBase()
-	: m_pSubMenuWidget(nullptr),
+OptionsSubMenuBase::OptionsSubMenuBase() :
+	m_pSubMenuWidget(nullptr),
 	m_pContainerHostPanel(nullptr),
 	m_pContainer(nullptr),
 	m_pScrollBar(nullptr),
@@ -15,7 +15,8 @@ OptionsSubMenuBase::OptionsSubMenuBase()
 	m_rightStackBox(m_itemSize),
 	m_optionItems(),
 	m_scrollValue(0),
-	m_containerPos(0, 0) {}
+	m_containerPos(0, 0)
+{}
 
 void OptionsSubMenuBase::onScrollChangePos(MyGUI::ScrollBar* caller, std::size_t pos)
 {

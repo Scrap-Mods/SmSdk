@@ -7,8 +7,8 @@
 
 #if defined(SMSDK_ENABLE_MYGUI)
 
-VerticalStackBox::VerticalStackBox(MyGUI::IntSize item_sz)
-	: m_itemSize(item_sz),
+VerticalStackBox::VerticalStackBox(MyGUI::IntSize item_sz) :
+	m_itemSize(item_sz),
 	m_skin("PanelEmpty"),
 	m_pParent(nullptr),
 	m_pEmptyPanel(nullptr),
@@ -21,7 +21,8 @@ VerticalStackBox::VerticalStackBox(MyGUI::IntSize item_sz)
 	some_val7(0),
 	m_panelPos(0, 0),
 	m_vecWidgets(),
-	m_separatorColor(0.25490198f, 0.25490198f, 0.25490198f) {}
+	m_separatorColor(0.25490198f, 0.25490198f, 0.25490198f)
+{}
 
 void VerticalStackBox::onParentChangeCoord(MyGUI::Widget* caller)
 {

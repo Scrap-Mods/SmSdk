@@ -7,8 +7,9 @@ OptionsItemSlider::OptionsItemSlider(
 	const std::string& caption,
 	float min_value,
 	float max_value,
-	std::size_t scroll_range)
-	: OptionsItemBase(),
+	std::size_t scroll_range
+) :
+	OptionsItemBase(),
 	m_pSlider(nullptr),
 	m_pValueTextBox(nullptr),
 	m_uSteps(scroll_range),
