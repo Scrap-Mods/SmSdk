@@ -24,4 +24,8 @@ public:
 
 }; // Size: 0x168
 
+#if _SM_VERSION_NUM >= 070771
+static_assert(sizeof(GameplayOptionsMenu) == 0x178, "GameplayOptionsMenu: Incorrect Size");
+#else
 static_assert(sizeof(GameplayOptionsMenu) == 0x168, "GameplayOptionsMenu: Incorrect Size");
+#endif
