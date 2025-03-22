@@ -50,7 +50,7 @@ enum ECharacterMovementState : __int8
 	ECharacterMovementState_Sitting = 3
 };
 
-struct Character : public NetObj
+class Character : public NetObj
 {
 	/* 0x0028 */ char pad_0x28[0x8];
 public:
