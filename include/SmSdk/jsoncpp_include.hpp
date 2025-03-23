@@ -7,6 +7,9 @@
 #else
 namespace Json
 {
-	class Value {};
+	class Value {
+	private:
+		char data[0x18];
+	};
 }
 #endif
