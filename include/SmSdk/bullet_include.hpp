@@ -23,5 +23,12 @@ struct btNullPairCache {};
 struct btCollisionDispatcher {};
 struct btCollisionWorld {};
 struct btGhostPairCallback {};
-
+struct btActionInterface {
+private:
+	void* data;
+};
+struct btVector3 {
+private:
+	float data[4];
+};
 #endif

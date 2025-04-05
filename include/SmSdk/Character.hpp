@@ -1,5 +1,6 @@
 #pragma once
 
+#include "SmSdk/bullet_include.hpp"
 #include "SmSdk/boost_include.hpp"
 #include "SmSdk/Base/NetObj.hpp"
 #include "SmSdk/offsets.hpp"
@@ -23,6 +24,93 @@ struct CharacterScriptData
 }; // Size: 0x8
 
 static_assert(sizeof(CharacterScriptData) == 0x8, "CharacterScriptData: Incorrect Size");
+
+class CharacterController : public btActionInterface
+{
+private:
+	/* 0x0008 */ char pad_0x8[0x8];
+public:
+	/* 0x0010 */ float m_fGroundTraction;
+	/* 0x0014 */ float m_fAirTraction;
+	/* 0x0018 */ __int32 unk_int1;
+	/* 0x001C */ float unk_float1;
+	/* 0x0020 */ float unk_float2;
+	/* 0x0024 */ float m_fStepOverHeight;
+	/* 0x0028 */ float unk_float3;
+	/* 0x002C */ float m_fGravity;
+	/* 0x0030 */ float m_fMass;
+	/* 0x0034 */ float unk_float5;
+	/* 0x0038 */ btPairCachingGhostObject* m_pPairCachingGhostObject;
+	/* 0x0040 */ float m_fFallVelocity;
+	/* 0x0044 */ float m_fFallAcceleration;
+	/* 0x0048 */ float m_fJumpStrength;
+	/* 0x004C */ float unk_float6;
+private:
+	/* 0x0050 */ char pad_0x50[0x10];
+public:
+	/* 0x0060 */ btVector3 m_targetMovementVelocity;
+	/* 0x0070 */ btVector3 m_movementVelocity;
+private:
+	/* 0x0080 */ char pad_0x80[0x20];
+public:
+	/* 0x00A0 */ btVector3 m_targetFinalWorldMovement;
+	/* 0x00B0 */ btVector3 m_finalWorldMovement;
+	/* 0x00C0 */ btVector3 m_worldMovement2;
+private:
+	/* 0x00D0 */ char pad_0xD0[0x40];
+public:
+	/* 0x0110 */ btVector3 m_surfaceNormal;
+	/* 0x0120 */ float m_fStepOverHeightCpy;
+	/* 0x0124 */ unsigned __int32 m_uTicksInAir;
+private:
+	/* 0x0128 */ char pad_0x128[0x8];
+public:
+	/* 0x0130 */ unsigned __int8 m_surfaceType;
+private:
+	/* 0x0131 */ char pad_0x131[0x7];
+public:
+	/* 0x0138 */ unsigned __int32 m_uBodyId;
+private:
+	/* 0x013C */ char pad_0x13C[0x14];
+public:
+	/* 0x0150 */ btVector3 m_lastTouchedGlobalPos;
+	/* 0x0160 */ btVector3 m_lastTouchedLocalPos;
+	/* 0x0170 */ bool m_bInAir;
+private:
+	/* 0x0171 */ char pad_0x171[0x2F];
+
+}; // Size: 0x1A0
+
+static_assert(offsetof(CharacterController, CharacterController::m_fGroundTraction) == 0x10, "CharacterController::m_fGroundTraction: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_fAirTraction) == 0x14, "CharacterController::m_fAirTraction: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::unk_int1) == 0x18, "CharacterController::unk_int1: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::unk_float1) == 0x1C, "CharacterController::unk_float1: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::unk_float2) == 0x20, "CharacterController::unk_float2: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_fStepOverHeight) == 0x24, "CharacterController::m_fStepOverHeight: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::unk_float3) == 0x28, "CharacterController::unk_float3: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_fGravity) == 0x2C, "CharacterController::m_fGravity: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_fMass) == 0x30, "CharacterController::m_fMass: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::unk_float5) == 0x34, "CharacterController::unk_float5: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_pPairCachingGhostObject) == 0x38, "CharacterController::m_pPairCachingGhostObject: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_fFallVelocity) == 0x40, "CharacterController::m_fFallVelocity: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_fFallAcceleration) == 0x44, "CharacterController::m_fFallAcceleration: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_fJumpStrength) == 0x48, "CharacterController::m_fJumpStrength: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::unk_float6) == 0x4C, "CharacterController::unk_float6: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_targetMovementVelocity) == 0x60, "CharacterController::m_targetMovementVelocity: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_movementVelocity) == 0x70, "CharacterController::m_movementVelocity: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_targetFinalWorldMovement) == 0xA0, "CharacterController::m_targetFinalWorldMovement: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_finalWorldMovement) == 0xB0, "CharacterController::m_finalWorldMovement: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_worldMovement2) == 0xC0, "CharacterController::m_worldMovement2: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_surfaceNormal) == 0x110, "CharacterController::m_surfaceNormal: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_fStepOverHeightCpy) == 0x120, "CharacterController::m_fStepOverHeightCpy: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_uTicksInAir) == 0x124, "CharacterController::m_uTicksInAir: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_surfaceType) == 0x130, "CharacterController::m_surfaceType: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_uBodyId) == 0x138, "CharacterController::m_uBodyId: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_lastTouchedGlobalPos) == 0x150, "CharacterController::m_lastTouchedGlobalPos: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_lastTouchedLocalPos) == 0x160, "CharacterController::m_lastTouchedLocalPos: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_bInAir) == 0x170, "CharacterController::m_bInAir: Incorrect offset");
+
+static_assert(sizeof(CharacterController) == 0x1A0, "CharacterController: Incorrect Size");
 
 #if _SM_VERSION_NUM >= 070771
 struct CharacterControllerData
@@ -121,7 +209,7 @@ public:
 private:
 	/* 0x0923 */ char pad_0x923[0x225];
 public:
-	/* 0x0B48 */ std::shared_ptr<struct CharacterController> m_pController;
+	/* 0x0B48 */ std::shared_ptr<CharacterController> m_pController;
 	/* 0x0B58 */ std::shared_ptr<struct CharacterPhysicsProxy> m_pPhysicsProxy;
 	/* 0x0B68 */ std::shared_ptr<struct RagdollPhysicsProxy> m_pRagdollPhysicsProxy;
 private:
@@ -290,7 +378,7 @@ public:
 private:
 	/* 0x017B */ char pad_0x17B[0x1D];
 public:
-	/* 0x0198 */ std::shared_ptr<struct CharacterController> m_pController;
+	/* 0x0198 */ std::shared_ptr<CharacterController> m_pController;
 	/* 0x01A8 */ std::shared_ptr<struct CharacterPhysicsProxy> m_pPhysicsProxy;
 	/* 0x01B8 */ std::shared_ptr<struct RagdollPhysicsProxy> m_pRagdollPhysicsProxy;
 private:
