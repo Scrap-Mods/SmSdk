@@ -77,7 +77,7 @@ namespace UTILS
 
 		//inline static std::function<void(const char*, const char*, unsigned int)> sm_assertHandler = nullptr;
 
-	private:
+	public:
 		//inline static std::mutex sm_logMutex = std::mutex();
 		//inline static std::mutex sm_logNoRepeatMutex = std::mutex();
 		//inline static std::unordered_set<std::uint64_t> sm_messageCache = {};
