@@ -2,6 +2,8 @@
 
 #include "SmSdk/bullet_include.hpp"
 
+SMSDK_BEGIN_NAMESPACE
+
 enum PhysicsProxyType : unsigned char
 {
 	PhysicsProxyType_Border = 1,
@@ -19,17 +21,17 @@ __declspec(align(16)) class PhysicsProxy
 {
 public:
 	virtual char getProxyType() { return 0; }
-
 private:
 	/* 0x0008 */ char pad_0x8[0x8];
 public:
 	/* 0x0010 */ btRigidBody* m_pDynamicsWorldRigidBody;
 	/* 0x0018 */ btRigidBody* m_pTickRaycastCollisionObject;
 	/* 0x0020 */ btCollisionObject* m_pInterpolatedRaycastCollisionObject;
-	/* 0x0028 */ __int16 world_id;
+	/* 0x0028 */ std::int16_t m_iWorldId;
 private:
 	/* 0x002A */ char pad_0x2A[0x6];
-
-}; //Size=0x0030
+}; // Size: 0x30
 
 static_assert(sizeof(PhysicsProxy) == 0x30, "PhysicsProxy: Incorrect Size");
+
+SMSDK_END_NAMESPACE

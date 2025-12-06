@@ -1,0 +1,71 @@
+BasedOnStyle: LLVM
+Language: Cpp
+Standard: c++17
+
+# Indentation - Uses tabs
+IndentWidth: 4
+TabWidth: 4
+UseTab: ForIndentation
+AccessModifierOffset: -4
+NamespaceIndentation: None
+IndentCaseLabels: false
+IndentPPDirectives: None
+IndentWrappedFunctionNames: false
+IndentAccessModifiers: false
+
+# Braces - Allman style (opening braces on new line)
+BreakBeforeBraces: Allman
+
+# Line breaking - No column limit to preserve current long lines
+ColumnLimit: 0
+AlwaysBreakAfterReturnType: None
+AlwaysBreakTemplateDeclarations: No
+BreakConstructorInitializers: BeforeColon
+BreakInheritanceList: BeforeColon
+AllowAllParametersOfDeclarationOnNextLine: true
+
+# Spacing
+SpaceBeforeParens: ControlStatements
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+SpacesInAngles: Never
+SpaceAfterCStyleCast: true
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCpp11BracedList: false
+SpaceInEmptyParentheses: false
+SpacesBeforeTrailingComments: 1
+
+# Alignment - Disabled to match current style
+AlignConsecutiveAssignments: None
+AlignConsecutiveDeclarations: None
+AlignTrailingComments: false
+AlignEscapedNewlines: DontAlign
+AlignOperands: DontAlign
+PointerAlignment: Left
+DerivePointerAlignment: false
+ReferenceAlignment: Left
+
+# Short constructs
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Empty
+AllowShortEnumsOnASingleLine: false
+
+# Includes - Do not sort, preserve current order
+SortIncludes: Never
+IncludeBlocks: Preserve
+
+# Comments and empty lines
+KeepEmptyLinesAtTheStartOfBlocks: true
+MaxEmptyLinesToKeep: 2
+ReflowComments: false
+EmptyLineBeforeAccessModifier: Never
+EmptyLineAfterAccessModifier: Never
+
+# Other formatting
+Cpp11BracedListStyle: true
+CompactNamespaces: false
+FixNamespaceComments: false
+IndentGotoLabels: false

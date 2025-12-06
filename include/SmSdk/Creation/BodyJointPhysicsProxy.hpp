@@ -3,6 +3,8 @@
 #include "SmSdk/Physics/PhysicsProxy.hpp"
 #include "SmSdk/bullet_include.hpp"
 
+SMSDK_BEGIN_NAMESPACE
+
 class BodyJointPhysicsProxy : public PhysicsProxy
 {
 public:
@@ -12,3 +14,5 @@ private:
 }; // Size: 0xD0
 
 static_assert(sizeof(BodyJointPhysicsProxy) == 0xD0, "BodyJointPhysicsProxy: Incorrect Size");
+
+SMSDK_END_NAMESPACE

@@ -1,9 +1,11 @@
 #pragma once
 
-#include "OptionsSubMenuBase.hpp"
+#include "SmSdk/Gui/OptionsSubMenuBase.hpp"
 
 #include "SmSdk/Util/Memory.hpp"
 #include "SmSdk/offsets.hpp"
+
+SMSDK_BEGIN_NAMESPACE
 
 class ControlOptionsMenu : public OptionsSubMenuBase
 {
@@ -16,9 +18,10 @@ public:
 
 	virtual ~ControlOptionsMenu() = default;
 	void restoreDefaults() override { /* implemented by the game */ }
-
 private:
 	/* 0x0168 */ char pad_0x168[0x20];
 }; // Size: 0x188
 
 static_assert(sizeof(ControlOptionsMenu) == 0x188, "ControlOptionsMenu: Incorrect Size");
+
+SMSDK_END_NAMESPACE

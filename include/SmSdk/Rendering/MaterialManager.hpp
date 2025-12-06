@@ -3,46 +3,47 @@
 #include "SmSdk/jsoncpp_include.hpp"
 #include "SmSdk/config.hpp"
 
-#include "Material.hpp"
+#include "SmSdk/Rendering/Material.hpp"
 
 #include <unordered_map>
 #include <vector>
 
+SMSDK_BEGIN_NAMESPACE
+
 struct MaterialEntry
 {
 public:
-	/* 0x0000 */ std::uint32_t m_id;
+	/* 0x0000 */ uint32_t m_uId;
 private:
 	/* 0x0004 */ char pad_0x4[0x4];
 public:
 	/* 0x0008 */ std::string m_name;
-	/* 0x0028 */ std::uint8_t m_uMaterialType;
+	/* 0x0028 */ uint8_t m_uMaterialType;
 private:
 	/* 0x0029 */ char pad_0x29[0x3];
 public:
-	/* 0x002C */ std::uint32_t m_uPipelineFlags;
-	/* 0x0030 */ std::uint64_t m_uRendQueueMask;
-	/* 0x0038 */ std::uint64_t m_uSemantic;
-	/* 0x0040 */ std::uint32_t m_uPosAnimCount;
-	/* 0x0044 */ std::uint32_t m_uVertexStride;
-	/* 0x0048 */ std::uint32_t m_uInstanceStride;
+	/* 0x002C */ uint32_t m_uPipelineFlags;
+	/* 0x0030 */ uint64_t m_uRendQueueMask;
+	/* 0x0038 */ uint64_t m_uSemantic;
+	/* 0x0040 */ uint32_t m_uPosAnimCount;
+	/* 0x0044 */ uint32_t m_uVertexStride;
+	/* 0x0048 */ uint32_t m_uInstanceStride;
 private:
 	/* 0x004C */ char pad_0x4C[0x4];
 public:
 	/* 0x0050 */ Json::Value m_jCustomData;
 	/* 0x0068 */ Material* m_arrMaterials[132];
-
 }; // Size: 0x488
 
-static_assert(offsetof(MaterialEntry, MaterialEntry::m_id) == 0x0, "MaterialEntry::m_id: Incorrect offset");
+static_assert(offsetof(MaterialEntry, MaterialEntry::m_uId) == 0x0, "MaterialEntry::m_uId: Incorrect offset");
 static_assert(offsetof(MaterialEntry, MaterialEntry::m_name) == 0x8, "MaterialEntry::m_name: Incorrect offset");
 static_assert(offsetof(MaterialEntry, MaterialEntry::m_uMaterialType) == 0x28, "MaterialEntry::m_uMaterialType: Incorrect offset");
 static_assert(offsetof(MaterialEntry, MaterialEntry::m_uPipelineFlags) == 0x2C, "MaterialEntry::m_uPipelineFlags: Incorrect offset");
 static_assert(offsetof(MaterialEntry, MaterialEntry::m_uRendQueueMask) == 0x30, "MaterialEntry::m_uRendQueueMask: Incorrect offset");
 static_assert(offsetof(MaterialEntry, MaterialEntry::m_uSemantic) == 0x38, "MaterialEntry::m_uSemantic: Incorrect offset");
 static_assert(offsetof(MaterialEntry, MaterialEntry::m_uPosAnimCount) == 0x40, "MaterialEntry::m_uPosAnimCount: Incorrect offset");
-static_assert(offsetof(MaterialEntry, MaterialEntry::m_uVertexStride) == 0x44, "MaterialEntry::uVertexStride: Incorrect offset");
-static_assert(offsetof(MaterialEntry, MaterialEntry::m_uInstanceStride) == 0x48, "MaterialEntry::uInstanceStride: Incorrect offset");
+static_assert(offsetof(MaterialEntry, MaterialEntry::m_uVertexStride) == 0x44, "MaterialEntry::m_uVertexStride: Incorrect offset");
+static_assert(offsetof(MaterialEntry, MaterialEntry::m_uInstanceStride) == 0x48, "MaterialEntry::m_uInstanceStride: Incorrect offset");
 static_assert(offsetof(MaterialEntry, MaterialEntry::m_jCustomData) == 0x50, "MaterialEntry::m_jCustomData: Incorrect offset");
 static_assert(offsetof(MaterialEntry, MaterialEntry::m_arrMaterials) == 0x68, "MaterialEntry::m_arrMaterials: Incorrect offset");
 static_assert(sizeof(MaterialEntry) == 0x488, "MaterialEntry: Incorrect Size");
@@ -75,7 +76,7 @@ public:
 	/* 0x00B0 */ Material* m_pMainSky;
 	/* 0x00B8 */ Material* m_pMainImpostorGBuffer;
 	/* 0x00C0 */ Material* m_pMainImpostorDepth;
-	/* 0x00C8 */ std::unordered_map<std::size_t, MaterialEntry*, PassthroughHash> m_arrMaterialMap[10];
+	/* 0x00C8 */ std::unordered_map<size_t, MaterialEntry*, PassthroughHash> m_arrMaterialMap[10];
 	/* 0x0348 */ std::vector<MaterialEntry*> m_vecMaterials;
 
 }; // Size: 0x360
@@ -109,3 +110,5 @@ static_assert(offsetof(MaterialManager, MaterialManager::m_arrMaterialMap) == 0x
 static_assert(offsetof(MaterialManager, MaterialManager::m_vecMaterials) == 0x348, "MaterialManager::m_vecMaterials: Incorrect offset");
 
 static_assert(sizeof(MaterialManager) == 0x360, "MaterialManager: Incorrect Size");
+
+SMSDK_END_NAMESPACE

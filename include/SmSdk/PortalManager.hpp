@@ -7,6 +7,8 @@
 #include <unordered_map>
 #include <memory>
 
+SMSDK_BEGIN_NAMESPACE
+
 struct Portal : public NetObj
 {
 private:
@@ -27,17 +29,18 @@ static_assert(offsetof(Portal, Portal::m_pAreaTriggerB) == 0x48, "Portal::m_pAre
 static_assert(sizeof(Portal) == 0x50, "Portal: Incorrect Size");
 
 
-
 struct PortalManager
 {
-    static PortalManager* GetInstance();
+	static PortalManager* GetInstance();
 
 	/* 0x0000 */ std::unordered_map<int, std::shared_ptr<Portal>> m_mapPortals;
 private:
 	/* 0x0040 */ char pad_0x40[0x58];
-    
+
 }; // Size: 0x98
 
 static_assert(offsetof(PortalManager, PortalManager::m_mapPortals) == 0x0, "PortalManager::m_mapPortals: Incorrect offset");
 
 static_assert(sizeof(PortalManager) == 0x98, "PortalManager: Incorrect Size");
+
+SMSDK_END_NAMESPACE

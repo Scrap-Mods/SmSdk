@@ -1,11 +1,20 @@
 #pragma once
 
+#include "SmSdk/config.hpp"
+
+#include "SmSdk/Base/NetObj.hpp"
+#include <unordered_map>
+#include <vector>
+#include <memory>
+
+SMSDK_BEGIN_NAMESPACE
+
 struct PathNode : public NetObj
 {
 private:
 	/* 0x0028 */ char pad_0x28[0x8];
 public:
-	/* 0x0030 */ __int16 m_worldId;
+	/* 0x0030 */ std::int16_t m_iWorldId;
 private:
 	/* 0x0032 */ char pad_0x32[0x1E];
 public:
@@ -14,16 +23,15 @@ private:
 	/* 0x005C */ char pad_0x5C[0x4];
 }; // Size: 0x60
 
-static_assert(offsetof(PathNode, PathNode::m_worldId) == 0x30, "PathNode::m_worldId: Incorrect offset");
+static_assert(offsetof(PathNode, PathNode::m_iWorldId) == 0x30, "PathNode::m_iWorldId: Incorrect offset");
 static_assert(offsetof(PathNode, PathNode::m_position) == 0x50, "PathNode::m_position: Incorrect offset");
 
 static_assert(sizeof(PathNode) == 0x60, "PathNode: Incorrect Size");
 
 
-
 struct Pathfinder
 {
-    static Pathfinder* GetInstance();
+	static Pathfinder* GetInstance();
 
 	/* 0x0000 */ std::unordered_map<int, std::shared_ptr<PathNode>> m_mapPathNodes;
 	/* 0x0040 */ std::vector<std::shared_ptr<PathNode>> m_vecPathNodes;
@@ -36,3 +44,5 @@ static_assert(offsetof(Pathfinder, Pathfinder::m_mapPathNodes) == 0x0, "Pathfind
 static_assert(offsetof(Pathfinder, Pathfinder::m_vecPathNodes) == 0x40, "Pathfinder::m_vecPathNodes: Incorrect offset");
 
 static_assert(sizeof(Pathfinder) == 0xA0, "Pathfinder: Incorrect Size");
+
+SMSDK_END_NAMESPACE

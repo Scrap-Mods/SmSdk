@@ -11,15 +11,17 @@
 #include <memory>
 #include <string>
 
+SMSDK_BEGIN_NAMESPACE
+
 struct CharacterScriptData
 {
-	/* 0x0000 */ bool has_client_onGraphicsLoaded;
-	/* 0x0001 */ bool has_client_onGraphicsUnloaded;
-	/* 0x0002 */ bool has_client_canInteract;
-	/* 0x0003 */ bool has_client_onInteract;
-	/* 0x0004 */ bool has_client_onProjectile;
-	/* 0x0005 */ bool has_client_onMelee;
-	/* 0x0006 */ bool has_client_onCollision;
+	/* 0x0000 */ bool m_bHasClientOnGraphicsLoaded;
+	/* 0x0001 */ bool m_bHasClientOnGraphicsUnloaded;
+	/* 0x0002 */ bool m_bHasClientCanInteract;
+	/* 0x0003 */ bool m_bHasClientOnInteract;
+	/* 0x0004 */ bool m_bHasClientOnProjectile;
+	/* 0x0005 */ bool m_bHasClientOnMelee;
+	/* 0x0006 */ bool m_bHasClientOnCollision;
 	/* 0x0007 */ char pad_0x7[0x1];
 }; // Size: 0x8
 
@@ -32,20 +34,26 @@ private:
 public:
 	/* 0x0010 */ float m_fGroundTraction;
 	/* 0x0014 */ float m_fAirTraction;
-	/* 0x0018 */ __int32 unk_int1;
-	/* 0x001C */ float unk_float1;
-	/* 0x0020 */ float unk_float2;
+private:
+	/* 0x0018 */ std::int32_t m_iUnk1;
+	/* 0x001C */ float m_fUnk1;
+	/* 0x0020 */ float m_fUnk2;
+public:
 	/* 0x0024 */ float m_fStepOverHeight;
-	/* 0x0028 */ float unk_float3;
+private:
+	/* 0x0028 */ float m_fUnk3;
+public:
 	/* 0x002C */ float m_fGravity;
 	/* 0x0030 */ float m_fMass;
-	/* 0x0034 */ float unk_float5;
+private:
+	/* 0x0034 */ float m_fUnk4;
+public:
 	/* 0x0038 */ btPairCachingGhostObject* m_pPairCachingGhostObject;
 	/* 0x0040 */ float m_fFallVelocity;
 	/* 0x0044 */ float m_fFallAcceleration;
 	/* 0x0048 */ float m_fJumpStrength;
-	/* 0x004C */ float unk_float6;
 private:
+	/* 0x004C */ float m_fUnk5;
 	/* 0x0050 */ char pad_0x50[0x10];
 public:
 	/* 0x0060 */ btVector3 m_targetMovementVelocity;
@@ -61,15 +69,15 @@ private:
 public:
 	/* 0x0110 */ btVector3 m_surfaceNormal;
 	/* 0x0120 */ float m_fStepOverHeightCpy;
-	/* 0x0124 */ unsigned __int32 m_uTicksInAir;
+	/* 0x0124 */ uint32_t m_uTicksInAir;
 private:
 	/* 0x0128 */ char pad_0x128[0x8];
 public:
-	/* 0x0130 */ unsigned __int8 m_surfaceType;
+	/* 0x0130 */ uint8_t m_eSurfaceType;
 private:
 	/* 0x0131 */ char pad_0x131[0x7];
 public:
-	/* 0x0138 */ unsigned __int32 m_uBodyId;
+	/* 0x0138 */ uint32_t m_uBodyId;
 private:
 	/* 0x013C */ char pad_0x13C[0x14];
 public:
@@ -83,19 +91,13 @@ private:
 
 static_assert(offsetof(CharacterController, CharacterController::m_fGroundTraction) == 0x10, "CharacterController::m_fGroundTraction: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_fAirTraction) == 0x14, "CharacterController::m_fAirTraction: Incorrect offset");
-static_assert(offsetof(CharacterController, CharacterController::unk_int1) == 0x18, "CharacterController::unk_int1: Incorrect offset");
-static_assert(offsetof(CharacterController, CharacterController::unk_float1) == 0x1C, "CharacterController::unk_float1: Incorrect offset");
-static_assert(offsetof(CharacterController, CharacterController::unk_float2) == 0x20, "CharacterController::unk_float2: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_fStepOverHeight) == 0x24, "CharacterController::m_fStepOverHeight: Incorrect offset");
-static_assert(offsetof(CharacterController, CharacterController::unk_float3) == 0x28, "CharacterController::unk_float3: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_fGravity) == 0x2C, "CharacterController::m_fGravity: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_fMass) == 0x30, "CharacterController::m_fMass: Incorrect offset");
-static_assert(offsetof(CharacterController, CharacterController::unk_float5) == 0x34, "CharacterController::unk_float5: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_pPairCachingGhostObject) == 0x38, "CharacterController::m_pPairCachingGhostObject: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_fFallVelocity) == 0x40, "CharacterController::m_fFallVelocity: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_fFallAcceleration) == 0x44, "CharacterController::m_fFallAcceleration: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_fJumpStrength) == 0x48, "CharacterController::m_fJumpStrength: Incorrect offset");
-static_assert(offsetof(CharacterController, CharacterController::unk_float6) == 0x4C, "CharacterController::unk_float6: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_targetMovementVelocity) == 0x60, "CharacterController::m_targetMovementVelocity: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_movementVelocity) == 0x70, "CharacterController::m_movementVelocity: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_targetFinalWorldMovement) == 0xA0, "CharacterController::m_targetFinalWorldMovement: Incorrect offset");
@@ -104,7 +106,7 @@ static_assert(offsetof(CharacterController, CharacterController::m_worldMovement
 static_assert(offsetof(CharacterController, CharacterController::m_surfaceNormal) == 0x110, "CharacterController::m_surfaceNormal: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_fStepOverHeightCpy) == 0x120, "CharacterController::m_fStepOverHeightCpy: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_uTicksInAir) == 0x124, "CharacterController::m_uTicksInAir: Incorrect offset");
-static_assert(offsetof(CharacterController, CharacterController::m_surfaceType) == 0x130, "CharacterController::m_surfaceType: Incorrect offset");
+static_assert(offsetof(CharacterController, CharacterController::m_eSurfaceType) == 0x130, "CharacterController::m_eSurfaceType: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_uBodyId) == 0x138, "CharacterController::m_uBodyId: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_lastTouchedGlobalPos) == 0x150, "CharacterController::m_lastTouchedGlobalPos: Incorrect offset");
 static_assert(offsetof(CharacterController, CharacterController::m_lastTouchedLocalPos) == 0x160, "CharacterController::m_lastTouchedLocalPos: Incorrect offset");
@@ -124,14 +126,17 @@ struct CharacterControllerData
 	/* 0x0018 */ float m_fHeight;
 	/* 0x001C */ float m_fHeightCrouch;
 	/* 0x0020 */ float m_fMass;
+private:
 	/* 0x0024 */ char pad_0x24[0xC];
+public:
 	/* 0x0030 */ bool m_bCanSwim;
+private:
 	/* 0x0031 */ char pad_0x31[0x3];
 }; // Size: 0x34
 
 static_assert(sizeof(CharacterControllerData) == 0x34, "CharacterControllerData: Incorrect Size");
 
-enum ECharacterMovementState : __int8
+enum ECharacterMovementState : std::int8_t
 {
 	ECharacterMovementState_Standing = 1,
 	ECharacterMovementState_Crouching = 2,
@@ -142,16 +147,16 @@ class Character : public NetObj
 {
 	/* 0x0028 */ char pad_0x28[0x8];
 public:
-	/* 0x0030 */ __int16 m_worldId;
+	/* 0x0030 */ std::int16_t m_iWorldId;
 private:
 	/* 0x0032 */ char pad_0x32[0x6];
 public:
-	/* 0x0038 */ __int64 m_ownerSteamId;
-	/* 0x0040 */ bool m_isPlayer;
+	/* 0x0038 */ std::int64_t m_iOwnerSteamId;
+	/* 0x0040 */ bool m_bIsPlayer;
 private:
 	/* 0x0041 */ char pad_0x41[0x3];
 public:
-	/* 0x0044 */ __int32 m_unitId;
+	/* 0x0044 */ std::int32_t m_iUnitId;
 	/* 0x0048 */ boost::uuids::uuid m_uuid;
 	/* 0x0058 */ bool m_bDowned;
 	/* 0x0059 */ bool m_bSwimming;
@@ -184,12 +189,12 @@ public:
 private:
 	/* 0x08B0 */ char pad_0x8B0[0x8];
 public:
-	/* 0x08B8 */ __int32 m_nextLockingInteractableId;
-	/* 0x08BC */ __int32 m_lockingInteractableId;
+	/* 0x08B8 */ std::int32_t m_iNextLockingInteractableId;
+	/* 0x08BC */ std::int32_t m_iLockingInteractableId;
 private:
 	/* 0x08C0 */ char pad_0x8C0[0x18];
 public:
-	/* 0x08D8 */ bool m_isOnGround;
+	/* 0x08D8 */ bool m_bIsOnGround;
 private:
 	/* 0x08D9 */ char pad_0x8D9[0x3];
 public:
@@ -199,9 +204,9 @@ private:
 	/* 0x08EC */ char pad_0x8EC[0xC];
 public:
 	/* 0x08F8 */ boost::uuids::uuid m_selectedToolUuid;
-	/* 0x0908 */ __int32 m_selectedToolId;
+	/* 0x0908 */ std::int32_t m_iSelectedToolId;
 	/* 0x090C */ boost::uuids::uuid m_prevSelectedToolUuid;
-	/* 0x091C */ __int32 m_prevSelectedToolId;
+	/* 0x091C */ std::int32_t m_iPrevSelectedToolId;
 private:
 	/* 0x0920 */ char pad_0x920[0x2];
 public:
@@ -223,8 +228,8 @@ private:
 public:
 	/* 0x0C70 */ std::string m_scriptPath;
 	/* 0x0C90 */ std::string m_scriptClass;
-	/* 0x0CB0 */ __int32 m_scriptRef;
-	/* 0x0CB4 */ __int32 m_publicDataScriptRef;
+	/* 0x0CB0 */ std::int32_t m_iScriptRef;
+	/* 0x0CB4 */ std::int32_t m_iPublicDataScriptRef;
 private:
 	/* 0x0CB8 */ char pad_0xCB8[0x88];
 public:
@@ -242,16 +247,16 @@ private:
 	/* 0x0DC1 */ char pad_0xDC1[0x3];
 public:
 	/* 0x0DC4 */ DirectX::XMFLOAT4 m_nameTagColor;
-	/* 0x0DD4 */ float m_nameTagFadeDistance;
-	/* 0x0DD8 */ float m_nameTagRenderDistance;
-	/* 0x0DDC */ __int32 m_nameTagUpdateCounter;
+	/* 0x0DD4 */ float m_fNameTagFadeDistance;
+	/* 0x0DD8 */ float m_fNameTagRenderDistance;
+	/* 0x0DDC */ std::int32_t m_iNameTagUpdateCounter;
 }; // Size: 0xDE0
 
 
-static_assert(offsetof(Character, Character::m_worldId) == 0x30, "Character::m_worldId: Incorrect offset");
-static_assert(offsetof(Character, Character::m_ownerSteamId) == 0x38, "Character::m_ownerSteamId: Incorrect offset");
-static_assert(offsetof(Character, Character::m_isPlayer) == 0x40, "Character::m_isPlayer: Incorrect offset");
-static_assert(offsetof(Character, Character::m_unitId) == 0x44, "Character::m_unitId: Incorrect offset");
+static_assert(offsetof(Character, Character::m_iWorldId) == 0x30, "Character::m_iWorldId: Incorrect offset");
+static_assert(offsetof(Character, Character::m_iOwnerSteamId) == 0x38, "Character::m_iOwnerSteamId: Incorrect offset");
+static_assert(offsetof(Character, Character::m_bIsPlayer) == 0x40, "Character::m_bIsPlayer: Incorrect offset");
+static_assert(offsetof(Character, Character::m_iUnitId) == 0x44, "Character::m_iUnitId: Incorrect offset");
 static_assert(offsetof(Character, Character::m_uuid) == 0x48, "Character::m_uuid: Incorrect offset");
 static_assert(offsetof(Character, Character::m_bDowned) == 0x58, "Character::m_bDowned: Incorrect offset");
 static_assert(offsetof(Character, Character::m_bSwimming) == 0x59, "Character::m_bSwimming: Incorrect offset");
@@ -266,15 +271,15 @@ static_assert(offsetof(Character, Character::m_velocityDirection) == 0xB4, "Char
 static_assert(offsetof(Character, Character::m_velocity) == 0xC0, "Character::m_velocity: Incorrect offset");
 static_assert(offsetof(Character, Character::m_acceleration) == 0xCC, "Character::m_acceleration: Incorrect offset");
 static_assert(offsetof(Character, Character::m_upDirection) == 0x8A4, "Character::m_upDirection: Incorrect offset");
-static_assert(offsetof(Character, Character::m_nextLockingInteractableId) == 0x8B8, "Character::m_nextLockingInteractableId: Incorrect offset");
-static_assert(offsetof(Character, Character::m_lockingInteractableId) == 0x8BC, "Character::m_lockingInteractableId: Incorrect offset");
-static_assert(offsetof(Character, Character::m_isOnGround) == 0x8D8, "Character::m_isOnGround: Incorrect offset");
+static_assert(offsetof(Character, Character::m_iNextLockingInteractableId) == 0x8B8, "Character::m_iNextLockingInteractableId: Incorrect offset");
+static_assert(offsetof(Character, Character::m_iLockingInteractableId) == 0x8BC, "Character::m_iLockingInteractableId: Incorrect offset");
+static_assert(offsetof(Character, Character::m_bIsOnGround) == 0x8D8, "Character::m_bIsOnGround: Incorrect offset");
 static_assert(offsetof(Character, Character::m_fAirTime) == 0x8DC, "Character::m_fAirTime: Incorrect offset");
 static_assert(offsetof(Character, Character::m_groundNormal) == 0x8E0, "Character::m_groundNormal: Incorrect offset");
 static_assert(offsetof(Character, Character::m_selectedToolUuid) == 0x8F8, "Character::m_selectedToolUuid: Incorrect offset");
-static_assert(offsetof(Character, Character::m_selectedToolId) == 0x908, "Character::m_selectedToolId: Incorrect offset");
+static_assert(offsetof(Character, Character::m_iSelectedToolId) == 0x908, "Character::m_selectedToolId: Incorrect offset");
 static_assert(offsetof(Character, Character::m_prevSelectedToolUuid) == 0x90C, "Character::m_prevSelectedToolUuid: Incorrect offset");
-static_assert(offsetof(Character, Character::m_prevSelectedToolId) == 0x91C, "Character::m_prevSelectedToolId: Incorrect offset");
+static_assert(offsetof(Character, Character::m_iPrevSelectedToolId) == 0x91C, "Character::m_iPrevSelectedToolId: Incorrect offset");
 static_assert(offsetof(Character, Character::m_charMovementState) == 0x922, "Character::m_charMovementState: Incorrect offset");
 static_assert(offsetof(Character, Character::m_pController) == 0xB48, "Character::m_pController: Incorrect offset");
 static_assert(offsetof(Character, Character::m_pPhysicsProxy) == 0xB58, "Character::m_pPhysicsProxy: Incorrect offset");
@@ -284,8 +289,8 @@ static_assert(offsetof(Character, Character::m_scriptData) == 0xC58, "Character:
 static_assert(offsetof(Character, Character::m_bCanSwim) == 0xC60, "Character::m_bCanSwim: Incorrect offset");
 static_assert(offsetof(Character, Character::m_scriptPath) == 0xC70, "Character::m_scriptPath: Incorrect offset");
 static_assert(offsetof(Character, Character::m_scriptClass) == 0xC90, "Character::m_scriptClass: Incorrect offset");
-static_assert(offsetof(Character, Character::m_scriptRef) == 0xCB0, "Character::m_scriptRef: Incorrect offset");
-static_assert(offsetof(Character, Character::m_publicDataScriptRef) == 0xCB4, "Character::m_publicDataScriptRef: Incorrect offset");
+static_assert(offsetof(Character, Character::m_iScriptRef) == 0xCB0, "Character::m_iScriptRef: Incorrect offset");
+static_assert(offsetof(Character, Character::m_iPublicDataScriptRef) == 0xCB4, "Character::m_iPublicDataScriptRef: Incorrect offset");
 static_assert(offsetof(Character, Character::m_color) == 0xD40, "Character::m_color: Incorrect offset");
 static_assert(offsetof(Character, Character::m_tumblingExtent) == 0xD50, "Character::m_tumblingExtent: Incorrect offset");
 static_assert(offsetof(Character, Character::m_tumblingWorldPosition) == 0xD5C, "Character::m_tumblingWorldPosition: Incorrect offset");
@@ -294,9 +299,9 @@ static_assert(offsetof(Character, Character::m_tumblingLinearVelocity) == 0xD78,
 static_assert(offsetof(Character, Character::m_nameTag) == 0xDA0, "Character::m_nameTag: Incorrect offset");
 static_assert(offsetof(Character, Character::m_nameTagRequiresLineOfSight) == 0xDC0, "Character::m_nameTagRequiresLineOfSight: Incorrect offset");
 static_assert(offsetof(Character, Character::m_nameTagColor) == 0xDC4, "Character::m_nameTagColor: Incorrect offset");
-static_assert(offsetof(Character, Character::m_nameTagFadeDistance) == 0xDD4, "Character::m_nameTagFadeDistance: Incorrect offset");
-static_assert(offsetof(Character, Character::m_nameTagRenderDistance) == 0xDD8, "Character::m_nameTagRenderDistance: Incorrect offset");
-static_assert(offsetof(Character, Character::m_nameTagUpdateCounter) == 0xDDC, "Character::m_nameTagUpdateCounter: Incorrect offset");
+static_assert(offsetof(Character, Character::m_fNameTagFadeDistance) == 0xDD4, "Character::m_nameTagFadeDistance: Incorrect offset");
+static_assert(offsetof(Character, Character::m_fNameTagRenderDistance) == 0xDD8, "Character::m_nameTagRenderDistance: Incorrect offset");
+static_assert(offsetof(Character, Character::m_iNameTagUpdateCounter) == 0xDDC, "Character::m_iNameTagUpdateCounter: Incorrect offset");
 
 static_assert(sizeof(Character) == 0xDE0, "Character: Incorrect Size");
 #else
@@ -305,76 +310,76 @@ class Character : public NetObj
 private:
 	/* 0x0028 */ char pad_0x28[0x8];
 public:
-	/* 0x0030 */ __int16 world_id;
+	/* 0x0030 */ std::int16_t m_iWorldId;
 private:
 	/* 0x0032 */ char pad_0x32[0x6];
 public:
-	/* 0x0038 */ __int64 owner_steam_id;
-	/* 0x0040 */ bool is_player;
+	/* 0x0038 */ std::int64_t m_iOwnerSteamId;
+	/* 0x0040 */ bool m_bIsPlayer;
 private:
 	/* 0x0041 */ char pad_0x41[0x3];
 public:
-	/* 0x0044 */ __int32 unit_id;
-	/* 0x0048 */ boost::uuids::uuid uuid;
-	/* 0x0058 */ bool is_downed;
-	/* 0x0059 */ bool is_swimming;
-	/* 0x005A */ bool is_diving;
+	/* 0x0044 */ std::int32_t m_iUnitId;
+	/* 0x0048 */ boost::uuids::uuid m_uuid;
+	/* 0x0058 */ bool m_bIsDowned;
+	/* 0x0059 */ bool m_bIsSwimming;
+	/* 0x005A */ bool m_bIsDiving;
 private:
 	/* 0x005B */ char pad_0x5B[0x1];
 public:
-	/* 0x005C */ bool is_climbing;
-	/* 0x005D */ bool is_tumbling;
+	/* 0x005C */ bool m_bIsClimbing;
+	/* 0x005D */ bool m_bIsTumbling;
 private:
 	/* 0x005E */ char pad_0x5E[0x2];
 public:
-	/* 0x0060 */ float movement_speed_fraction;
+	/* 0x0060 */ float m_fMovementSpeedFraction;
 private:
 	/* 0x0064 */ char pad_0x64[0x4];
 public:
-	/* 0x0068 */ std::vector<std::string> animation_list;
-	/* 0x0080 */ DirectX::XMFLOAT3 spawn_position;
+	/* 0x0068 */ std::vector<std::string> m_vecAnimations;
+	/* 0x0080 */ DirectX::XMFLOAT3 m_spawnPosition;
 private:
 	/* 0x008C */ char pad_0x8C[0x1C];
 public:
-	/* 0x00A8 */ DirectX::XMFLOAT3 velocity;
-	/* 0x00B4 */ DirectX::XMFLOAT3 acceleration;
+	/* 0x00A8 */ DirectX::XMFLOAT3 m_velocity;
+	/* 0x00B4 */ DirectX::XMFLOAT3 m_acceleration;
 private:
 	/* 0x00C0 */ char pad_0xC0[0x14];
 public:
-	/* 0x00D4 */ __int32 control_key_sum;
-	/* 0x00D8 */ float walk_direction_radians;
-	/* 0x00DC */ float yaw;
-	/* 0x00E0 */ float pitch;
-	/* 0x00E4 */ float yaw2;
-	/* 0x00E8 */ float pitch2;
-	/* 0x00EC */ DirectX::XMFLOAT3 up_direction_cpy;
-	/* 0x00F8 */ DirectX::XMFLOAT3 up_direction;
-	/* 0x0104 */ float yaw3;
-	/* 0x0108 */ float pitch3;
+	/* 0x00D4 */ std::int32_t m_iControlKeySum;
+	/* 0x00D8 */ float m_fWalkDirectionRadians;
+	/* 0x00DC */ float m_fYaw;
+	/* 0x00E0 */ float m_fPitch;
+	/* 0x00E4 */ float m_fYaw2;
+	/* 0x00E8 */ float m_fPitch2;
+	/* 0x00EC */ DirectX::XMFLOAT3 m_upDirectionCpy;
+	/* 0x00F8 */ DirectX::XMFLOAT3 m_upDirection;
+	/* 0x0104 */ float m_fYaw3;
+	/* 0x0108 */ float m_fPitch3;
 private:
 	/* 0x010C */ char pad_0x10C[0x4];
 public:
-	/* 0x0110 */ __int32 locking_interactable_id;
+	/* 0x0110 */ std::int32_t m_iLockingInteractableId;
 private:
 	/* 0x0114 */ char pad_0x114[0x1C];
 public:
-	/* 0x0130 */ bool is_on_ground;
+	/* 0x0130 */ bool m_bIsOnGround;
 private:
 	/* 0x0131 */ char pad_0x131[0x3];
 public:
-	/* 0x0134 */ float air_time;
-	/* 0x0138 */ DirectX::XMFLOAT3 ground_normal;
+	/* 0x0134 */ float m_fAirTime;
+	/* 0x0138 */ DirectX::XMFLOAT3 m_groundNormal;
 private:
 	/* 0x0144 */ char pad_0x144[0xC];
 public:
-	/* 0x0150 */ boost::uuids::uuid selected_tool_uuid;
-	/* 0x0160 */ __int32 selected_tool_id;
-	/* 0x0164 */ boost::uuids::uuid prev_selected_tool_uuid;
-	/* 0x0174 */ __int32 prev_selected_tool_id;
+	/* 0x0150 */ boost::uuids::uuid m_selectedToolUuid;
+	/* 0x0160 */ std::int32_t m_iSelectedToolId;
+	/* 0x0164 */ boost::uuids::uuid m_prevSelectedToolUuid;
+	/* 0x0174 */ std::int32_t m_iPrevSelectedToolId;
 private:
 	/* 0x0178 */ char pad_0x178[0x2];
 public:
-	/* 0x017A */ __int8 crouch_state;
+	/* 0x017A */ std::int8_t m_iCrouchState;
 private:
 	/* 0x017B */ char pad_0x17B[0x1D];
 public:
@@ -384,50 +389,52 @@ public:
 private:
 	/* 0x01C8 */ char pad_0x1C8[0xB8];
 public:
-	/* 0x0280 */ float walk_speed;
-	/* 0x0284 */ float aim_speed;
-	/* 0x0288 */ float crouch_speed;
-	/* 0x028C */ float sprint_speed;
-	/* 0x0290 */ float jump_strength;
-	/* 0x0294 */ float radius;
-	/* 0x0298 */ float height;
-	/* 0x029C */ float height_crouch;
-	/* 0x02A0 */ float mass;
+	/* 0x0280 */ float m_fWalkSpeed;
+	/* 0x0284 */ float m_fAimSpeed;
+	/* 0x0288 */ float m_fCrouchSpeed;
+	/* 0x028C */ float m_fSprintSpeed;
+	/* 0x0290 */ float m_fJumpStrength;
+	/* 0x0294 */ float m_fRadius;
+	/* 0x0298 */ float m_fHeight;
+	/* 0x029C */ float m_fHeightCrouch;
+	/* 0x02A0 */ float m_fMass;
 private:
 	/* 0x02A4 */ char pad_0x2A4[0xC];
 public:
-	/* 0x02B0 */ bool can_swim;
+	/* 0x02B0 */ bool m_bCanSwim;
 private:
 	/* 0x02B1 */ char pad_0x2B1[0x3];
 public:
-	/* 0x02B4 */ CharacterScriptData script_data;
+	/* 0x02B4 */ CharacterScriptData m_scriptData;
 private:
 	/* 0x02BC */ char pad_0x2BC[0x4];
 public:
-	/* 0x02C0 */ std::string script_path;
-	/* 0x02E0 */ std::string script_class;
-	/* 0x0300 */ __int32 script_ref;
+	/* 0x02C0 */ std::string m_scriptPath;
+	/* 0x02E0 */ std::string m_scriptClass;
+	/* 0x0300 */ std::int32_t m_iScriptRef;
 private:
 	/* 0x0304 */ char pad_0x304[0x8];
 public:
-	/* 0x030C */ DirectX::XMFLOAT4 color;
-	/* 0x031C */ DirectX::XMFLOAT3 tumbling_extent;
-	/* 0x0328 */ DirectX::XMFLOAT3 tumbling_world_position;
-	/* 0x0334 */ DirectX::XMFLOAT4 tumbling_world_rotation;
-	/* 0x0344 */ DirectX::XMFLOAT3 tumbling_linear_velocity;
+	/* 0x030C */ DirectX::XMFLOAT4 m_color;
+	/* 0x031C */ DirectX::XMFLOAT3 m_tumblingExtent;
+	/* 0x0328 */ DirectX::XMFLOAT3 m_tumblingWorldPosition;
+	/* 0x0334 */ DirectX::XMFLOAT4 m_tumblingWorldRotation;
+	/* 0x0344 */ DirectX::XMFLOAT3 m_tumblingLinearVelocity;
 private:
 	/* 0x0350 */ char pad_0x350[0x20];
 public:
-	/* 0x0370 */ std::string name_tag;
-	/* 0x0390 */ bool name_tag_requires_line_of_sight;
+	/* 0x0370 */ std::string m_nameTag;
+	/* 0x0390 */ bool m_nameTagRequiresLineOfSight;
 private:
 	/* 0x0391 */ char pad_0x391[0x3];
 public:
-	/* 0x0394 */ DirectX::XMFLOAT4 name_tag_color;
-	/* 0x03A4 */ float name_tag_fade_distance;
-	/* 0x03A8 */ float name_tag_render_distance;
-	/* 0x03AC */ __int32 name_tag_update_counter;
+	/* 0x0394 */ DirectX::XMFLOAT4 m_nameTagColor;
+	/* 0x03A4 */ float m_fNameTagFadeDistance;
+	/* 0x03A8 */ float m_fNameTagRenderDistance;
+	/* 0x03AC */ std::int32_t m_iNameTagUpdateCounter;
 }; // Size: 0x3B0
 
 static_assert(sizeof(Character) == 0x3B0, "Character: Incorrect Size");
 #endif
+
+SMSDK_END_NAMESPACE

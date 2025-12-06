@@ -3,6 +3,8 @@
 #include "SmSdk/Base/NetObj.hpp"
 #include "SmSdk/Util/Color.hpp"
 
+SMSDK_BEGIN_NAMESPACE
+
 struct Joint : public NetObj
 {
 private:
@@ -16,9 +18,11 @@ public:
 private:
 	/* 0x0060 */ char pad_0x60[0x68];
 public:
-	/* 0x00C8 */ std::shared_ptr<class ControllerBase> controller;
+	/* 0x00C8 */ std::shared_ptr<class ControllerBase> m_pController;
 private:
 	/* 0x00D8 */ char pad_0xD8[0x8];
 }; // Size: 0xE0
 
 static_assert(sizeof(Joint) == 0xE0, "Joint: Incorrect Size");
+
+SMSDK_END_NAMESPACE

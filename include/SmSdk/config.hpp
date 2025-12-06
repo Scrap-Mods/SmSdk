@@ -10,7 +10,11 @@
 //#define SMSDK_ENABLE_D3D11
 
 // WARNING: All the map getters will be wrong without the Boost uuid library
+// TODO: This could be fixed by implementing the hash function that Boost uses internally for our stub
 //#define SMSDK_ENABLE_BOOST
+
+// You can optionally wrap everything into a namespace
+#define SMSDK_NAMESPACE SM
 
 #include <cstdint>
 #include <cstddef>
@@ -26,12 +30,24 @@
 	class_name(const class_name&) = delete; \
 	class_name(class_name&&) = delete;
 
-// Means that the std::size_t is an output of an XXH function
-using XXHStringHash = std::size_t;
+// Means that the size_t is an output of an XXH function
+using XXHStringHash = size_t;
 
 // A simple number used as a hash
-struct PassthroughHash {
-	inline std::size_t operator()(const std::size_t val) const noexcept {
+struct PassthroughHash
+{
+	inline size_t operator()(const size_t val) const noexcept
+	{
 		return val;
 	}
 };
+
+#ifdef SMSDK_NAMESPACE
+#define SMSDK_BEGIN_NAMESPACE namespace SMSDK_NAMESPACE {
+#define SMSDK_END_NAMESPACE }
+#define SMSDK_USE_NAMESPACE using namespace SMSDK_NAMESPACE;
+#else
+#define SMSDK_BEGIN_NAMESPACE
+#define SMSDK_END_NAMESPACE
+#define SMSDK_USE_NAMESPACE
+#endif

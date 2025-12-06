@@ -1,9 +1,11 @@
 #pragma once
 
-#include "OptionsSubMenuBase.hpp"
+#include "SmSdk/Gui/OptionsSubMenuBase.hpp"
 
 #include "SmSdk/Util/Memory.hpp"
 #include "SmSdk/offsets.hpp"
+
+SMSDK_BEGIN_NAMESPACE
 
 class AudioOptionsMenu : public OptionsSubMenuBase
 {
@@ -16,7 +18,8 @@ public:
 
 	virtual ~AudioOptionsMenu() = default;
 	void restoreDefaults() override { /* implemented by the game */ }
-
 }; // Size: 0x168
 
 static_assert(sizeof(AudioOptionsMenu) == 0x168, "AudioOptionsMenu: Incorrect Size");
+
+SMSDK_END_NAMESPACE
