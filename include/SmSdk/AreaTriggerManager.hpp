@@ -14,32 +14,23 @@ SMSDK_BEGIN_NAMESPACE
 
 struct AreaTrigger
 {
-	/* 0x0000 */ std::int32_t m_iId;
-	/* 0x0004 */ std::int16_t m_iWorldId;
-private:
-	/* 0x0006 */ char pad_0x6[0xE];
-public:
-	/* 0x0014 */ uint32_t m_uFilter;
-private:
-	/* 0x0018 */ char pad_0x18[0xC];
-	/* 0x0024 */ uint32_t m_uSomeFlag;
-	/* 0x0028 */ char pad_0x28[0x4];
-public:
-	/* 0x002C */ bool m_bWaterTrigger;
-private:
-	/* 0x002D */ char pad_0x2D[0x3];
-public:
-	/* 0x0030 */ btBoxShape* m_pBoxShape;
-	/* 0x0038 */ btPairCachingGhostObject* m_pGhostObject;
-	/* 0x0040 */ AreaTriggerProxy* m_pPhysicsProxy;
-private:
-	/* 0x0048 */ char pad_0x48[0x100];
-public:
-	/* 0x0148 */ DirectX::XMFLOAT3 m_position;
-	/* 0x0154 */ DirectX::XMFLOAT4 m_rotation;
-	/* 0x0164 */ DirectX::XMFLOAT3 m_size;
-private:
-	/* 0x0170 */ char pad_0x170[0x8];
+	/* 0x0000 */ SDK_PUB std::int32_t m_iId;
+	/* 0x0004 */ SDK_PUB std::int16_t m_iWorldId;
+	/* 0x0006 */ SDK_PRI char pad_0x6[0xE];
+	/* 0x0014 */ SDK_PUB std::uint32_t m_uFilter;
+	/* 0x0018 */ SDK_PRI char pad_0x18[0xC];
+	/* 0x0024 */ SDK_PRI std::uint32_t m_uSomeFlag;
+	/* 0x0028 */ SDK_PRI char pad_0x28[0x4];
+	/* 0x002C */ SDK_PUB bool m_bWaterTrigger;
+	/* 0x002D */ SDK_PRI char pad_0x2D[0x3];
+	/* 0x0030 */ SDK_PUB btBoxShape* m_pBoxShape;
+	/* 0x0038 */ SDK_PUB btPairCachingGhostObject* m_pGhostObject;
+	/* 0x0040 */ SDK_PUB AreaTriggerProxy* m_pPhysicsProxy;
+	/* 0x0048 */ SDK_PRI char pad_0x48[0x100];
+	/* 0x0148 */ SDK_PUB DirectX::XMFLOAT3 m_position;
+	/* 0x0154 */ SDK_PUB DirectX::XMFLOAT4 m_rotation;
+	/* 0x0164 */ SDK_PUB DirectX::XMFLOAT3 m_size;
+	/* 0x0170 */ SDK_PRI char pad_0x170[0x8];
 }; // Size: 0x178
 
 static_assert(offsetof(AreaTrigger, AreaTrigger::m_iId) == 0x0, "AreaTrigger::m_iId: Incorrect offset");

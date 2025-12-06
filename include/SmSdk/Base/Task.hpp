@@ -7,9 +7,8 @@ SMSDK_BEGIN_NAMESPACE
 
 class Task
 {
-public:
-	virtual ~Task() {}
-	virtual std::int64_t update(float fDeltaTime)
+	SDK_PUB virtual ~Task() {}
+	SDK_PUB virtual std::int64_t update(float fDeltaTime)
 	{
 		SMSDK_UNREF(fDeltaTime);
 		return 0;

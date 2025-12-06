@@ -11,10 +11,9 @@ SMSDK_BEGIN_NAMESPACE
 
 struct BlobDataKey
 {
-public:
-	/* 0x0000 */ boost::uuids::uuid m_uuid;
-	/* 0x0010 */ uint8_t m_data[14];
-	/* 0x001E */ uint16_t m_uSize;
+	/* 0x0000 */ SDK_PUB boost::uuids::uuid m_uuid;
+	/* 0x0010 */ SDK_PUB std::uint8_t m_data[14];
+	/* 0x001E */ SDK_PUB std::uint16_t m_uSize;
 }; // Size: 0x20
 
 static_assert(offsetof(BlobDataKey, BlobDataKey::m_uuid) == 0x0, "BlobDataKey::m_uuid: Incorrect offset");
@@ -26,19 +25,14 @@ static_assert(sizeof(BlobDataKey) == 0x20, "BlobDataKey: Incorrect Size");
 
 struct BlobData
 {
-public:
-	/* 0x0000 */ BlobDataKey m_key;
-	/* 0x0020 */ uint16_t m_uWorldId;
-	/* 0x0022 */ uint8_t m_uFlags;
-private:
-	/* 0x0023 */ char pad_0x23[0x5];
-public:
-	/* 0x0028 */ uint64_t m_uSteamId;
-	/* 0x0030 */ uint32_t m_uBlobSize; // might actually be 64 bit, gotta verify this later at some point
-private:
-	/* 0x0034 */ char pad_0x34[0x4];
-public:
-	/* 0x0038 */ void* m_pBlobData;
+	/* 0x0000 */ SDK_PUB BlobDataKey m_key;
+	/* 0x0020 */ SDK_PUB std::uint16_t m_uWorldId;
+	/* 0x0022 */ SDK_PUB std::uint8_t m_uFlags;
+	/* 0x0023 */ SDK_PRI char pad_0x23[0x5];
+	/* 0x0028 */ SDK_PUB std::uint64_t m_uSteamId;
+	/* 0x0030 */ SDK_PUB std::uint32_t m_uBlobSize; // might actually be 64 bit, gotta verify this later at some point
+	/* 0x0034 */ SDK_PRI char pad_0x34[0x4];
+	/* 0x0038 */ SDK_PUB void* m_pBlobData;
 }; // Size: 0x40
 
 static_assert(offsetof(BlobData, BlobData::m_key) == 0x0, "BlobData::m_key: Incorrect offset");

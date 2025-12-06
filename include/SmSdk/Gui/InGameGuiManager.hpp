@@ -11,12 +11,12 @@ SMSDK_BEGIN_NAMESPACE
 class InGameGuiManager : public InGameGuiManagerInterface
 {
 	REMOVE_COPY_CONSTRUCTORS(InGameGuiManager);
-public:
-	virtual ~InGameGuiManager() = default;
 
-	static InGameGuiManager* GetInstance();
+	SDK_PUB virtual ~InGameGuiManager() = default;
 
-	inline void _displayAlertText(const std::string& text, float duration = 4.0f)
+	SDK_PUB static InGameGuiManager* GetInstance();
+
+	SDK_PUB inline void _displayAlertText(const std::string& text, float duration = 4.0f)
 	{
 		if (!m_pHudGui)
 			return;
@@ -25,7 +25,7 @@ public:
 		m_pHudGui->m_fAlertTextTimer = duration;
 	}
 
-	inline void _setInteractionText(const std::vector<std::string>& vec)
+	SDK_PUB inline void _setInteractionText(const std::vector<std::string>& vec)
 	{
 		if (!m_pHudGui)
 			return;
@@ -36,7 +36,7 @@ public:
 		m_pHudGui->m_vecInteractionTexts[lastEntry].push_back("\n");
 	}
 
-	inline static void DisplayAlertText(const std::string& text, float duration = 4.0f)
+	SDK_PUB inline static void DisplayAlertText(const std::string& text, float duration = 4.0f)
 	{
 		InGameGuiManager* pInGameGuiManager = InGameGuiManager::GetInstance();
 		if (!pInGameGuiManager)
@@ -45,7 +45,7 @@ public:
 		pInGameGuiManager->_displayAlertText(text, duration);
 	}
 
-	inline static void SetInteractionText(const std::vector<std::string>& vec)
+	SDK_PUB inline static void SetInteractionText(const std::vector<std::string>& vec)
 	{
 		InGameGuiManager* pInGameGuiManager = InGameGuiManager::GetInstance();
 		if (!pInGameGuiManager)
@@ -53,14 +53,12 @@ public:
 
 		pInGameGuiManager->_setInteractionText(vec);
 	}
-private:
-	/* 0x0008 */ char pad_0x8[0x18];
-public:
-	/* 0x0020 */ std::shared_ptr<HudGui2> m_pHudGui;
-	/* 0x0030 */ std::shared_ptr<InventoryGui> m_pInventory;
-private:
-	/* 0x0040 */ char pad_0x40[0x18];
-	/* 0x0058 */ char pad_0x58[0x198];
+
+	/* 0x0008 */ SDK_PRI char pad_0x8[0x18];
+	/* 0x0020 */ SDK_PUB std::shared_ptr<HudGui2> m_pHudGui;
+	/* 0x0030 */ SDK_PUB std::shared_ptr<InventoryGui> m_pInventory;
+	/* 0x0040 */ SDK_PRI char pad_0x40[0x18];
+	/* 0x0058 */ SDK_PRI char pad_0x58[0x198];
 }; // Size: 0x1F0
 
 static_assert(sizeof(InGameGuiManager) == 0x1F0, "InGameGuiManager: Incorrect Size");

@@ -34,22 +34,19 @@ enum EInputEventType : uint32_t
 
 struct MouseData
 {
-	/* 0x0000 */ std::int32_t m_x;
-	/* 0x0004 */ std::int32_t m_y;
-	/* 0x0008 */ std::int32_t m_scroll;
+	/* 0x0000 */ SDK_PUB std::int32_t m_x;
+	/* 0x0004 */ SDK_PUB std::int32_t m_y;
+	/* 0x0008 */ SDK_PUB std::int32_t m_scroll;
 }; // Size: 0xC
 
 static_assert(sizeof(MouseData) == 0xC, "MouseData: Incorrect Size");
 
 struct InputEvent
 {
-	/* 0x0000 */ EInputEventType m_eventType;
-private:
-	/* 0x0004 */ char pad_0x4[0x4];
-public:
-	/* 0x0008 */ std::wstring m_someName;
-private:
-	/* 0x0028 */ char pad_0x28[0x18];
+	/* 0x0000 */ SDK_PUB EInputEventType m_eventType;
+	/* 0x0004 */ SDK_PRI char pad_0x4[0x4];
+	/* 0x0008 */ SDK_PUB std::wstring m_someName;
+	/* 0x0028 */ SDK_PRI char pad_0x28[0x18];
 }; // Size: 0x40
 
 static_assert(sizeof(InputEvent) == 0x40, "InputEvent: Incorrect Size");
@@ -57,30 +54,30 @@ static_assert(sizeof(InputEvent) == 0x40, "InputEvent: Incorrect Size");
 class InputManager
 {
 	REMOVE_COPY_CONSTRUCTORS(InputManager);
-public:
-	static InputManager* GetInstance();
 
-	inline bool _isKeyPressed(char cKey) const
+	SDK_PUB static InputManager* GetInstance();
+
+	SDK_PUB inline bool _isKeyPressed(char cKey) const
 	{
 		return m_eKeyStates[cKey] == EKeyState_Press;
 	}
 
-	inline bool _isKeyHeld(char cKey) const
+	SDK_PUB inline bool _isKeyHeld(char cKey) const
 	{
 		return m_eKeyStates[cKey] == EKeyState_Hold;
 	}
 
-	inline bool _isMouseButtonPressed(EMouseButton eBtn) const
+	SDK_PUB inline bool _isMouseButtonPressed(EMouseButton eBtn) const
 	{
 		return m_eMouseBtnStates[eBtn] == EKeyState_Press;
 	}
 
-	inline bool _isMouseButtonHeld(EMouseButton eBtn) const
+	SDK_PUB inline bool _isMouseButtonHeld(EMouseButton eBtn) const
 	{
 		return m_eMouseBtnStates[eBtn] == EKeyState_Hold;
 	}
 
-	inline static bool IsKeyPressed(char cKey)
+	SDK_PUB inline static bool IsKeyPressed(char cKey)
 	{
 		InputManager* pInputManager = InputManager::GetInstance();
 		if (!pInputManager)
@@ -89,7 +86,7 @@ public:
 		return pInputManager->_isKeyPressed(cKey);
 	}
 
-	inline static bool IsKeyHeld(char cKey)
+	SDK_PUB inline static bool IsKeyHeld(char cKey)
 	{
 		InputManager* pInputManager = InputManager::GetInstance();
 		if (!pInputManager)
@@ -98,7 +95,7 @@ public:
 		return pInputManager->_isKeyHeld(cKey);
 	}
 
-	inline static bool IsMouseButtonPressed(EMouseButton eBtn)
+	SDK_PUB inline static bool IsMouseButtonPressed(EMouseButton eBtn)
 	{
 		InputManager* pInputManager = InputManager::GetInstance();
 		if (!pInputManager)
@@ -107,7 +104,7 @@ public:
 		return pInputManager->_isMouseButtonPressed(eBtn);
 	}
 
-	inline static bool IsMouseButtonHeld(EMouseButton eBtn)
+	SDK_PUB inline static bool IsMouseButtonHeld(EMouseButton eBtn)
 	{
 		InputManager* pInputManager = InputManager::GetInstance();
 		if (!pInputManager)
@@ -116,7 +113,7 @@ public:
 		return pInputManager->_isMouseButtonHeld(eBtn);
 	}
 
-	inline static std::int32_t GetMouseScrollDelta()
+	SDK_PUB inline static std::int32_t GetMouseScrollDelta()
 	{
 		InputManager* pInputManager = InputManager::GetInstance();
 		if (!pInputManager)
@@ -124,36 +121,26 @@ public:
 
 		return pInputManager->m_deltaMouseData.m_scroll;
 	}
-private:
-	/* 0x0000 */ char pad_0x0[0xC];
-public:
-	/* 0x000C */ std::int32_t m_iCharacterCode;
-private:
-	/* 0x0010 */ char pad_0x10[0x18];
-public:
-	/* 0x0028 */ struct Contraption* m_pContraption;
-	/* 0x0030 */ MouseData m_currentMouseData;
-	/* 0x003C */ MouseData m_prevMouseData;
-	/* 0x0048 */ MouseData m_deltaMouseData;
-	/* 0x0054 */ bool m_bKeyPressStates[256];
-	/* 0x0154 */ bool m_bPrevKeyPressStates[256];
-	/* 0x0254 */ EKeyState m_eKeyStates[256];
-	/* 0x0654 */ bool m_bMouseBtnPressStates[5];
-	/* 0x0659 */ bool m_bMousePrevBtnPressStates[5];
-private:
-	/* 0x065E */ char pad_0x65E[0x2];
-public:
-	/* 0x0660 */ EMouseButton m_eMouseBtnStates[5];
-private:
-	/* 0x0674 */ char pad_0x674[0x4];
-public:
-	/* 0x0678 */ std::deque<InputEvent> m_deqInputQueue;
-private:
-	/* 0x06A0 */ char pad_0x6A0[0x4];
-public:
-	/* 0x06A4 */ float m_fCrashTimer;
-private:
-	/* 0x06A8 */ char pad_0x6A8[0x8];
+
+	/* 0x0000 */ SDK_PRI char pad_0x0[0xC];
+	/* 0x000C */ SDK_PUB std::int32_t m_iCharacterCode;
+	/* 0x0010 */ SDK_PRI char pad_0x10[0x18];
+	/* 0x0028 */ SDK_PUB struct Contraption* m_pContraption;
+	/* 0x0030 */ SDK_PUB MouseData m_currentMouseData;
+	/* 0x003C */ SDK_PUB MouseData m_prevMouseData;
+	/* 0x0048 */ SDK_PUB MouseData m_deltaMouseData;
+	/* 0x0054 */ SDK_PUB bool m_bKeyPressStates[256];
+	/* 0x0154 */ SDK_PUB bool m_bPrevKeyPressStates[256];
+	/* 0x0254 */ SDK_PUB EKeyState m_eKeyStates[256];
+	/* 0x0654 */ SDK_PUB bool m_bMouseBtnPressStates[5];
+	/* 0x0659 */ SDK_PUB bool m_bMousePrevBtnPressStates[5];
+	/* 0x065E */ SDK_PRI char pad_0x65E[0x2];
+	/* 0x0660 */ SDK_PUB EMouseButton m_eMouseBtnStates[5];
+	/* 0x0674 */ SDK_PRI char pad_0x674[0x4];
+	/* 0x0678 */ SDK_PUB std::deque<InputEvent> m_deqInputQueue;
+	/* 0x06A0 */ SDK_PRI char pad_0x6A0[0x4];
+	/* 0x06A4 */ SDK_PUB float m_fCrashTimer;
+	/* 0x06A8 */ SDK_PRI char pad_0x6A8[0x8];
 }; // Size: 0x6B0
 
 static_assert(sizeof(InputManager) == 0x6B0, "InputManager: Incorrect Size");

@@ -61,6 +61,14 @@ class TextBox
 class LayoutManager
 {
 };
+// This is a stub, please define `SMSDK_ENABLE_MYGUI` to use MyGUI
+class Button
+{
+};
+// This is a stub, please define `SMSDK_ENABLE_MYGUI` to use MyGUI
+class ItemBox
+{
+};
 }
 
 #endif

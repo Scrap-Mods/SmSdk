@@ -11,40 +11,36 @@ SMSDK_BEGIN_NAMESPACE
 class HarvestableManager
 {
 	REMOVE_COPY_CONSTRUCTORS(HarvestableManager);
-public:
-	virtual ~HarvestableManager() = default;
 
-	static HarvestableManager* GetInstance();
+	SDK_PUB virtual ~HarvestableManager() = default;
 
-	inline Harvestable* _getHarvestable(int iHarvestableIdx)
+	SDK_PUB static HarvestableManager* GetInstance();
+
+	SDK_PUB inline Harvestable* _getHarvestable(const std::uint32_t uHvsIdx)
 	{
-		auto iter = this->m_mapHarvestables.find(iHarvestableIdx);
-		if (iter == this->m_mapHarvestables.end())
+		auto iter = m_mapHarvestables.find(uHvsIdx);
+		if (iter == m_mapHarvestables.end())
 			return nullptr;
 
 		return iter->second.get();
 	}
 
-	inline static Harvestable* GetHarvestable(int iHarvestableIdx)
+	SDK_PUB inline static Harvestable* GetHarvestable(const std::uint32_t uHvsIdx)
 	{
 		HarvestableManager* pHarvestableManager = HarvestableManager::GetInstance();
 		if (!pHarvestableManager)
 			return nullptr;
 
-		return pHarvestableManager->_getHarvestable(iHarvestableIdx);
+		return pHarvestableManager->_getHarvestable(uHvsIdx);
 	}
-private:
-	/* 0x0008 */ char pad_0x8[0x8];
-public:
-	/* 0x0010 */ std::unordered_map<int, std::shared_ptr<Harvestable>> m_mapHarvestables;
-private:
-	/* 0x0050 */ char pad_0x50[0x50];
-public:
-	/* 0x00A0 */ std::unordered_map<int, struct HarvestableCollision> m_mapHarvestableCollisions;
-	/* 0x00E0 */ std::unordered_map<boost::uuids::uuid, std::shared_ptr<struct HarvestableData>> m_mapHarvestableData;
-	/* 0x0120 */ std::shared_ptr<struct HarvestableData> m_pHarvestableData;
-private:
-	/* 0x0130 */ char pad_0x130[0x70];
+
+	/* 0x0008 */ SDK_PRI char pad_0x8[0x8];
+	/* 0x0010 */ SDK_PUB std::unordered_map<std::uint32_t, std::shared_ptr<Harvestable>> m_mapHarvestables;
+	/* 0x0050 */ SDK_PRI char pad_0x50[0x50];
+	/* 0x00A0 */ SDK_PUB std::unordered_map<std::uint32_t, struct HarvestableCollision> m_mapHarvestableCollisions;
+	/* 0x00E0 */ SDK_PUB std::unordered_map<boost::uuids::uuid, std::shared_ptr<struct HarvestableData>> m_mapHarvestableData;
+	/* 0x0120 */ SDK_PUB std::shared_ptr<struct HarvestableData> m_pHarvestableData;
+	/* 0x0130 */ SDK_PRI char pad_0x130[0x70];
 }; // Size: 0x1A0
 
 static_assert(sizeof(HarvestableManager) == 0x1A0, "HarvestableManager: Incorrect Size");

@@ -7,23 +7,19 @@ SMSDK_BEGIN_NAMESPACE
 
 class MainMenuRootGui : public GuiBase
 {
-private:
-	/* 0x0018 */ char pad_0x18[0x8];
-public:
-	/* 0x0020 */ struct MenuState* m_pMenuState;
-private:
-	/* 0x0028 */ char pad_0x28[0x10];
-public:
-	/* 0x0038 */ std::vector<std::shared_ptr<CompoundButton>> m_vecCompoundButtons;
-	/* 0x0050 */ std::vector<GuiBase*> m_vecGuis;
-	/* 0x0068 */ GuiBase* m_pCurrentGuiElement;
-	/* 0x0070 */ struct ChooseGameModeMenu* m_pChooseGameModeMenu;
-	/* 0x0078 */ struct CreativeModeMenu* m_pCreativeModeMenu;
-	/* 0x0080 */ struct SurvivalModeMenu* m_pSurvivalModeMenu;
-	/* 0x0088 */ struct ChallengeModeMenu* m_pChallengeModeMenu;
-	/* 0x0090 */ struct CustomGameModeMenu* m_pCustomGameModeMenu;
-	/* 0x0098 */ struct CharacterCustomizationMenu* m_pCharacterCustomizationMenu;
-	/* 0x00A0 */ class OptionsMenu* m_pOptionsMenu;
+	/* 0x0018 */ SDK_PRI char pad_0x18[0x8];
+	/* 0x0020 */ SDK_PUB struct MenuState* m_pMenuState;
+	/* 0x0028 */ SDK_PRI char pad_0x28[0x10];
+	/* 0x0038 */ SDK_PUB std::vector<std::shared_ptr<CompoundButton>> m_vecCompoundButtons;
+	/* 0x0050 */ SDK_PUB std::vector<GuiBase*> m_vecGuis;
+	/* 0x0068 */ SDK_PUB GuiBase* m_pCurrentGuiElement;
+	/* 0x0070 */ SDK_PUB struct ChooseGameModeMenu* m_pChooseGameModeMenu;
+	/* 0x0078 */ SDK_PUB struct CreativeModeMenu* m_pCreativeModeMenu;
+	/* 0x0080 */ SDK_PUB struct SurvivalModeMenu* m_pSurvivalModeMenu;
+	/* 0x0088 */ SDK_PUB struct ChallengeModeMenu* m_pChallengeModeMenu;
+	/* 0x0090 */ SDK_PUB struct CustomGameModeMenu* m_pCustomGameModeMenu;
+	/* 0x0098 */ SDK_PUB struct CharacterCustomizationMenu* m_pCharacterCustomizationMenu;
+	/* 0x00A0 */ SDK_PUB class OptionsMenu* m_pOptionsMenu;
 }; // Size: 0xA8
 
 static_assert(offsetof(MainMenuRootGui, MainMenuRootGui::m_pMenuState) == 0x20, "MainMenuRootGui::m_pMenuState: Incorrect offset");
