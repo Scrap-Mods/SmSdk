@@ -3,38 +3,38 @@
 
 SMSDK_USE_NAMESPACE
 
-BodyStructure* CreationManager::_getBodyData(int iId)
+BodyState* CreationManager::_getBodyState(const std::uint32_t uId)
 {
-	auto iter = m_mapBodies.find(iId);
-	if (iter == m_mapBodies.end())
+	auto iter = m_mapBodyStates.find(uId);
+	if (iter == m_mapBodyStates.end())
 		return nullptr;
 
 	return &iter->second;
 }
 
-JointStructure* CreationManager::_getJointData(int iId)
+JointState* CreationManager::_getJointState(const std::uint32_t uId)
 {
-	auto iter = m_mapJoints.find(iId);
-	if (iter == m_mapJoints.end())
+	auto iter = m_mapJointStates.find(uId);
+	if (iter == m_mapJointStates.end())
 		return nullptr;
 
 	return &iter->second;
 }
 
-BodyStructure* CreationManager::GetBodyData(int iId)
+BodyState* CreationManager::GetBodyState(const std::uint32_t uId)
 {
 	CreationManager* pCreationManager = CreationManager::GetInstance();
 	if (!pCreationManager)
 		return nullptr;
 
-	return pCreationManager->_getBodyData(iId);
+	return pCreationManager->_getBodyState(uId);
 }
 
-JointStructure* CreationManager::GetJointData(int iId)
+JointState* CreationManager::GetJointState(const std::uint32_t uId)
 {
 	CreationManager* pCreationManager = CreationManager::GetInstance();
 	if (!pCreationManager)
 		return nullptr;
 
-	return pCreationManager->_getJointData(iId);
+	return pCreationManager->_getJointState(uId);
 }

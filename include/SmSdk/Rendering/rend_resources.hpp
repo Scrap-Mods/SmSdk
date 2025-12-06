@@ -12,13 +12,12 @@ namespace rend
 {
 class D3D11Resource
 {
-private:
-	virtual void func1() { /* implemented by the game */ }
-	virtual void func2() { /* implemented by the game */ }
-	virtual void func3() { /* implemented by the game */ }
-	virtual void func4() { /* implemented by the game */ }
-public:
-	/* 0x0008 */ std::string m_debugName;
+	SDK_PRI virtual void func1() { /* implemented by the game */ }
+	SDK_PRI virtual void func2() { /* implemented by the game */ }
+	SDK_PRI virtual void func3() { /* implemented by the game */ }
+	SDK_PRI virtual void func4() { /* implemented by the game */ }
+
+	/* 0x0008 */ SDK_PUB std::string m_debugName;
 }; // Size: 0x28
 
 static_assert(offsetof(rend::D3D11Resource, rend::D3D11Resource::m_debugName) == 0x8, "rend::D3D11Resource::m_debugName: Incorrect offset");
@@ -26,20 +25,19 @@ static_assert(sizeof(rend::D3D11Resource) == 0x28, "rend::D3D11Resource: Incorre
 
 class D3D11ShaderProgram : public rend::D3D11Resource
 {
-public:
-	/* 0x0028 */ ID3DBlob* m_pVertexShaderBlob;
-	/* 0x0030 */ ID3DBlob* m_pPixelShaderBlob;
-	/* 0x0038 */ uint32_t m_uVertexShaderBlobSize;
-	/* 0x003C */ uint32_t m_uPixelShaderBlobSize;
-	/* 0x0040 */ ID3D11PixelShader* m_pPixelShader;
-	/* 0x0048 */ ID3D11VertexShader* m_pVertexShader;
-	/* 0x0050 */ std::string m_shaderPath;
-	/* 0x0070 */ std::string m_vsEntry;
-	/* 0x0090 */ std::string m_psEntry;
-	/* 0x00B0 */ std::unordered_map<XXHStringHash, uint32_t> m_mapPixelShaderBindings;
-	/* 0x00F0 */ std::unordered_map<XXHStringHash, uint32_t> m_mapVertexShaderBindings;
-	/* 0x0130 */ uint64_t m_uInputDescHash;
-	/* 0x0138 */ std::vector<std::string> m_vecDefines;
+	/* 0x0028 */ SDK_PUB ID3DBlob* m_pVertexShaderBlob;
+	/* 0x0030 */ SDK_PUB ID3DBlob* m_pPixelShaderBlob;
+	/* 0x0038 */ SDK_PUB std::uint32_t m_uVertexShaderBlobSize;
+	/* 0x003C */ SDK_PUB std::uint32_t m_uPixelShaderBlobSize;
+	/* 0x0040 */ SDK_PUB ID3D11PixelShader* m_pPixelShader;
+	/* 0x0048 */ SDK_PUB ID3D11VertexShader* m_pVertexShader;
+	/* 0x0050 */ SDK_PUB std::string m_shaderPath;
+	/* 0x0070 */ SDK_PUB std::string m_vsEntry;
+	/* 0x0090 */ SDK_PUB std::string m_psEntry;
+	/* 0x00B0 */ SDK_PUB std::unordered_map<XXHStringHash, std::uint32_t> m_mapPixelShaderBindings;
+	/* 0x00F0 */ SDK_PUB std::unordered_map<XXHStringHash, std::uint32_t> m_mapVertexShaderBindings;
+	/* 0x0130 */ SDK_PUB std::uint64_t m_uInputDescHash;
+	/* 0x0138 */ SDK_PUB std::vector<std::string> m_vecDefines;
 }; // Size: 0x150
 
 static_assert(offsetof(rend::D3D11ShaderProgram, rend::D3D11ShaderProgram::m_pVertexShaderBlob) == 0x28, "rend::D3D11ShaderProgram::m_pVertexShaderBlob: Incorrect offset");
@@ -59,9 +57,7 @@ static_assert(sizeof(rend::D3D11ShaderProgram) == 0x150, "rend::D3D11ShaderProgr
 
 class D3D11Layout : public rend::D3D11Resource
 {
-public:
-	/* 0x0028 */ ID3D11InputLayout* m_pDxLayout;
-
+	/* 0x0028 */ SDK_PUB ID3D11InputLayout* m_pDxLayout;
 }; // Size: 0x30
 
 static_assert(offsetof(rend::D3D11Layout, rend::D3D11Layout::m_pDxLayout) == 0x28, "rend::D3D11Layout::m_pDxLayout: Incorrect offset");

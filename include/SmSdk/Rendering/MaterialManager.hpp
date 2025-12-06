@@ -12,27 +12,20 @@ SMSDK_BEGIN_NAMESPACE
 
 struct MaterialEntry
 {
-public:
-	/* 0x0000 */ uint32_t m_uId;
-private:
-	/* 0x0004 */ char pad_0x4[0x4];
-public:
-	/* 0x0008 */ std::string m_name;
-	/* 0x0028 */ uint8_t m_uMaterialType;
-private:
-	/* 0x0029 */ char pad_0x29[0x3];
-public:
-	/* 0x002C */ uint32_t m_uPipelineFlags;
-	/* 0x0030 */ uint64_t m_uRendQueueMask;
-	/* 0x0038 */ uint64_t m_uSemantic;
-	/* 0x0040 */ uint32_t m_uPosAnimCount;
-	/* 0x0044 */ uint32_t m_uVertexStride;
-	/* 0x0048 */ uint32_t m_uInstanceStride;
-private:
-	/* 0x004C */ char pad_0x4C[0x4];
-public:
-	/* 0x0050 */ Json::Value m_jCustomData;
-	/* 0x0068 */ Material* m_arrMaterials[132];
+	/* 0x0000 */ SDK_PUB std::uint32_t m_uId;
+	/* 0x0004 */ SDK_PRI char pad_0x4[0x4];
+	/* 0x0008 */ SDK_PUB std::string m_name;
+	/* 0x0028 */ SDK_PUB std::uint8_t m_uMaterialType;
+	/* 0x0029 */ SDK_PRI char pad_0x29[0x3];
+	/* 0x002C */ SDK_PUB std::uint32_t m_uPipelineFlags;
+	/* 0x0030 */ SDK_PUB std::uint64_t m_uRendQueueMask;
+	/* 0x0038 */ SDK_PUB std::uint64_t m_uSemantic;
+	/* 0x0040 */ SDK_PUB std::uint32_t m_uPosAnimCount;
+	/* 0x0044 */ SDK_PUB std::uint32_t m_uVertexStride;
+	/* 0x0048 */ SDK_PUB std::uint32_t m_uInstanceStride;
+	/* 0x004C */ SDK_PRI char pad_0x4C[0x4];
+	/* 0x0050 */ SDK_PUB Json::Value m_jCustomData;
+	/* 0x0068 */ SDK_PUB Material* m_arrMaterials[132];
 }; // Size: 0x488
 
 static_assert(offsetof(MaterialEntry, MaterialEntry::m_uId) == 0x0, "MaterialEntry::m_uId: Incorrect offset");
@@ -50,35 +43,33 @@ static_assert(sizeof(MaterialEntry) == 0x488, "MaterialEntry: Incorrect Size");
 
 struct MaterialManager
 {
-public:
-	/* 0x0000 */ Material* m_pForwardParticles;
-	/* 0x0008 */ Material* m_pPostFxaa;
-	/* 0x0010 */ Material* m_pPostGodrays;
-	/* 0x0018 */ Material* m_pMainClutterImpostorGBuffer;
-	/* 0x0020 */ Material* m_pMainClutterGBuffer;
-	/* 0x0028 */ Material* m_pMainDebugDrawer;
-	/* 0x0030 */ Material* m_pGuiBlurryBackground;
-	/* 0x0038 */ Material* m_pGuiTextureBoxArray;
-	/* 0x0040 */ Material* m_pCubeMapComposition;
-	/* 0x0048 */ Material* m_pPostBloom;
-	/* 0x0050 */ Material* m_pPostAddBloom;
-	/* 0x0058 */ Material* m_pPostAddBloomNoise;
-	/* 0x0060 */ Material* m_pPostBlur;
-	/* 0x0068 */ Material* m_pPostSmartBlur;
-	/* 0x0070 */ Material* m_pPostDof;
-	/* 0x0078 */ Material* m_pPostCopy;
-	/* 0x0080 */ Material* m_pPostCopyDepth;
-	/* 0x0088 */ Material* m_pPostCopyBrightness;
-	/* 0x0090 */ Material* m_pMainTerrainSurfaceGBuffer;
-	/* 0x0098 */ Material* m_pMainTerrainSurfaceDepth;
-	/* 0x00A0 */ Material* m_pMainEditorTerrainSurfaceGBuffer;
-	/* 0x00A8 */ Material* m_pMainEditorTerrainSurfaceDepth;
-	/* 0x00B0 */ Material* m_pMainSky;
-	/* 0x00B8 */ Material* m_pMainImpostorGBuffer;
-	/* 0x00C0 */ Material* m_pMainImpostorDepth;
-	/* 0x00C8 */ std::unordered_map<size_t, MaterialEntry*, PassthroughHash> m_arrMaterialMap[10];
-	/* 0x0348 */ std::vector<MaterialEntry*> m_vecMaterials;
-
+	/* 0x0000 */ SDK_PUB Material* m_pForwardParticles;
+	/* 0x0008 */ SDK_PUB Material* m_pPostFxaa;
+	/* 0x0010 */ SDK_PUB Material* m_pPostGodrays;
+	/* 0x0018 */ SDK_PUB Material* m_pMainClutterImpostorGBuffer;
+	/* 0x0020 */ SDK_PUB Material* m_pMainClutterGBuffer;
+	/* 0x0028 */ SDK_PUB Material* m_pMainDebugDrawer;
+	/* 0x0030 */ SDK_PUB Material* m_pGuiBlurryBackground;
+	/* 0x0038 */ SDK_PUB Material* m_pGuiTextureBoxArray;
+	/* 0x0040 */ SDK_PUB Material* m_pCubeMapComposition;
+	/* 0x0048 */ SDK_PUB Material* m_pPostBloom;
+	/* 0x0050 */ SDK_PUB Material* m_pPostAddBloom;
+	/* 0x0058 */ SDK_PUB Material* m_pPostAddBloomNoise;
+	/* 0x0060 */ SDK_PUB Material* m_pPostBlur;
+	/* 0x0068 */ SDK_PUB Material* m_pPostSmartBlur;
+	/* 0x0070 */ SDK_PUB Material* m_pPostDof;
+	/* 0x0078 */ SDK_PUB Material* m_pPostCopy;
+	/* 0x0080 */ SDK_PUB Material* m_pPostCopyDepth;
+	/* 0x0088 */ SDK_PUB Material* m_pPostCopyBrightness;
+	/* 0x0090 */ SDK_PUB Material* m_pMainTerrainSurfaceGBuffer;
+	/* 0x0098 */ SDK_PUB Material* m_pMainTerrainSurfaceDepth;
+	/* 0x00A0 */ SDK_PUB Material* m_pMainEditorTerrainSurfaceGBuffer;
+	/* 0x00A8 */ SDK_PUB Material* m_pMainEditorTerrainSurfaceDepth;
+	/* 0x00B0 */ SDK_PUB Material* m_pMainSky;
+	/* 0x00B8 */ SDK_PUB Material* m_pMainImpostorGBuffer;
+	/* 0x00C0 */ SDK_PUB Material* m_pMainImpostorDepth;
+	/* 0x00C8 */ SDK_PUB std::unordered_map<size_t, MaterialEntry*, PassthroughHash> m_arrMaterialMap[10];
+	/* 0x0348 */ SDK_PUB std::vector<MaterialEntry*> m_vecMaterials;
 }; // Size: 0x360
 
 static_assert(offsetof(MaterialManager, MaterialManager::m_pForwardParticles) == 0x0, "MaterialManager::m_pForwardParticles: Incorrect offset");

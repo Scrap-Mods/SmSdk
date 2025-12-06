@@ -13,10 +13,9 @@ SMSDK_BEGIN_NAMESPACE
 
 class GuiSystemManager
 {
-public:
-	static GuiSystemManager* GetInstance();
+	SDK_PUB static GuiSystemManager* GetInstance();
 
-	static bool IsMouseVisible()
+	SDK_PUB static bool IsMouseVisible()
 	{
 		GuiSystemManager* pGuiSystemManager = GuiSystemManager::GetInstance();
 		if (!pGuiSystemManager)
@@ -25,17 +24,17 @@ public:
 		return pGuiSystemManager->m_bMouseVisible;
 	}
 
-	float getOptionItemSize() const
+	SDK_PUB float getOptionItemSize() const
 	{
 		return float(m_iScreenHeight) * (1.0f / 720.0f);
 	}
 
-	float getOptionItemSize2() const
+	SDK_PUB float getOptionItemSize2() const
 	{
 		return float(m_iScreenHeight) * (1.0f / 1080.0f);
 	}
 
-	static int ProcessScroll(
+	SDK_PRI static int ProcessScroll(
 	    int unknownVal,
 	    int scrollDistance,
 	    int topPos,
@@ -53,38 +52,30 @@ public:
 
 		return std::min(std::max(-unknownVal, vVal), 0);
 	}
-private:
-	/* 0x0000 */ char pad_0x0[0x18];
-public:
-	/* 0x0018 */ std::shared_ptr<MyGUI::DirectX11Platform> m_pMyGUIDx11Platform;
-	/* 0x0028 */ std::shared_ptr<MyGUI::Gui> m_pGui;
-	/* 0x0038 */ struct CreateTextureCallback* m_pCreateTextureCallback;
-	/* 0x0040 */ std::shared_ptr<struct CommonGuiAdditions> m_pCommonGuiAdditions;
-private:
-	/* 0x0050 */ char pad_0x50[0x10];
-public:
-	/* 0x0060 */ std::vector<std::string> m_vecFontNames;
-	/* 0x0078 */ std::vector<std::string> m_vecFonts;
-	/* 0x0090 */ std::vector<struct SystemTexture*> m_vecFontTextures;
-	/* 0x00A8 */ std::unordered_map<std::string, struct SystemTexture*> m_mapFontNameToTexture;
-	/* 0x00E8 */ std::int32_t m_iScreenWidth;
-	/* 0x00EC */ std::int32_t m_iScreenHeight;
-	/* 0x00F0 */ std::int32_t m_iScreenLeft;
-	/* 0x00F4 */ std::int32_t m_iScreenTop;
-	/* 0x00F8 */ std::string m_guiLanguage;
-private:
-	/* 0x0118 */ char pad_0x118[0x28];
-public:
-	/* 0x0140 */ std::map<std::string, struct TextureResource*> m_mapPathToTexture;
-private:
-	/* 0x0150 */ char pad_0x150[0x10];
-public:
-	/* 0x0160 */ std::unordered_map<std::string, std::string> m_mapWidgetNameToPath;
-	/* 0x01A0 */ std::unordered_map<uint8_t, HCURSOR> m_mapCursors;
-	/* 0x01E0 */ bool m_bMouseState;
-	/* 0x01E1 */ bool m_bMouseVisible;
-private:
-	/* 0x01E2 */ char pad_0x1E2[0x6];
+
+	/* 0x0000 */ SDK_PRI char pad_0x0[0x18];
+	/* 0x0018 */ SDK_PUB std::shared_ptr<MyGUI::DirectX11Platform> m_pMyGUIDx11Platform;
+	/* 0x0028 */ SDK_PUB std::shared_ptr<MyGUI::Gui> m_pGui;
+	/* 0x0038 */ SDK_PUB struct CreateTextureCallback* m_pCreateTextureCallback;
+	/* 0x0040 */ SDK_PUB std::shared_ptr<struct CommonGuiAdditions> m_pCommonGuiAdditions;
+	/* 0x0050 */ SDK_PRI char pad_0x50[0x10];
+	/* 0x0060 */ SDK_PUB std::vector<std::string> m_vecFontNames;
+	/* 0x0078 */ SDK_PUB std::vector<std::string> m_vecFonts;
+	/* 0x0090 */ SDK_PUB std::vector<struct SystemTexture*> m_vecFontTextures;
+	/* 0x00A8 */ SDK_PUB std::unordered_map<std::string, struct SystemTexture*> m_mapFontNameToTexture;
+	/* 0x00E8 */ SDK_PUB std::int32_t m_iScreenWidth;
+	/* 0x00EC */ SDK_PUB std::int32_t m_iScreenHeight;
+	/* 0x00F0 */ SDK_PUB std::int32_t m_iScreenLeft;
+	/* 0x00F4 */ SDK_PUB std::int32_t m_iScreenTop;
+	/* 0x00F8 */ SDK_PUB std::string m_guiLanguage;
+	/* 0x0118 */ SDK_PRI char pad_0x118[0x28];
+	/* 0x0140 */ SDK_PUB std::map<std::string, struct TextureResource*> m_mapPathToTexture;
+	/* 0x0150 */ SDK_PRI char pad_0x150[0x10];
+	/* 0x0160 */ SDK_PUB std::unordered_map<std::string, std::string> m_mapWidgetNameToPath;
+	/* 0x01A0 */ SDK_PUB std::unordered_map<uint8_t, HCURSOR> m_mapCursors;
+	/* 0x01E0 */ SDK_PUB bool m_bMouseState;
+	/* 0x01E1 */ SDK_PUB bool m_bMouseVisible;
+	/* 0x01E2 */ SDK_PRI char pad_0x1E2[0x6];
 }; // Size: 0x1E8
 
 static_assert(offsetof(GuiSystemManager, GuiSystemManager::m_pMyGUIDx11Platform) == 0x18, "GuiSystemManager::m_pMyGUIDx11Platform: Incorrect offset");

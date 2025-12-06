@@ -1,5 +1,7 @@
 #pragma once
 
+#include "SmSdk/config.hpp"
+
 #include <unordered_map>
 #include <string>
 
@@ -7,10 +9,9 @@ SMSDK_BEGIN_NAMESPACE
 
 class GameSettings
 {
-public:
-	static GameSettings* GetInstance();
+	SDK_PUB static GameSettings* GetInstance();
 
-	inline float _getFloatSetting(const std::string& name, float fDefaultValue = 1.0f) const
+	SDK_PUB inline float _getFloatSetting(const std::string& name, float fDefaultValue = 1.0f) const
 	{
 		auto iter = m_mapFloatSettings.find(name);
 		if (iter != m_mapFloatSettings.end())
@@ -19,12 +20,12 @@ public:
 		return fDefaultValue;
 	}
 
-	inline float _getMasterVolume() const
+	SDK_PUB inline float _getMasterVolume() const
 	{
 		return this->_getFloatSetting("MasterVolume", 1.0f);
 	}
 
-	inline static float GetEffectsVolume()
+	SDK_PUB inline static float GetEffectsVolume()
 	{
 		GameSettings* pGameSettings = GameSettings::GetInstance();
 		if (!pGameSettings)
@@ -36,7 +37,7 @@ public:
 		return fEffectVolume * fMasterVolume;
 	}
 
-	inline static float GetMasterVolume()
+	SDK_PUB inline static float GetMasterVolume()
 	{
 		GameSettings* pGameSettings = GameSettings::GetInstance();
 		if (!pGameSettings)
@@ -44,13 +45,12 @@ public:
 
 		return pGameSettings->_getFloatSetting("MasterVolume", 1.0f);
 	}
-public:
-	/* 0x0000 */ std::unordered_map<std::string, int> m_mapIntSettings;
-	/* 0x0040 */ std::unordered_map<std::string, float> m_mapFloatSettings;
-	/* 0x0080 */ std::unordered_map<std::string, std::string> m_mapStringSettings;
-	/* 0x00C0 */ std::int32_t m_appliedSettings;
-private:
-	/* 0x00C4 */ char pad_0xC4[0x4];
+
+	/* 0x0000 */ SDK_PUB std::unordered_map<std::string, int> m_mapIntSettings;
+	/* 0x0040 */ SDK_PUB std::unordered_map<std::string, float> m_mapFloatSettings;
+	/* 0x0080 */ SDK_PUB std::unordered_map<std::string, std::string> m_mapStringSettings;
+	/* 0x00C0 */ SDK_PUB std::int32_t m_appliedSettings;
+	/* 0x00C4 */ SDK_PRI char pad_0xC4[0x4];
 }; // Size: 0xC8
 
 static_assert(offsetof(GameSettings, GameSettings::m_mapIntSettings) == 0x0, "GameSettings::m_mapIntSettings: Incorrect offset");

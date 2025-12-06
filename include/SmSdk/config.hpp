@@ -42,6 +42,10 @@ struct PassthroughHash
 	}
 };
 
+#define SDK_PUB public:
+#define SDK_PRI private:
+#define SDK_PRO protected:
+
 #ifdef SMSDK_NAMESPACE
 #define SMSDK_BEGIN_NAMESPACE namespace SMSDK_NAMESPACE {
 #define SMSDK_END_NAMESPACE }

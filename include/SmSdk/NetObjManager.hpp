@@ -6,8 +6,7 @@ SMSDK_BEGIN_NAMESPACE
 
 class NetObjManager
 {
-public:
-	static NetObjManager* GetInstance();
+	SDK_PUB static NetObjManager* GetInstance();
 };
 
 SMSDK_END_NAMESPACE

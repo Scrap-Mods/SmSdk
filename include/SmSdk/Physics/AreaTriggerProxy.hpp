@@ -6,9 +6,8 @@ SMSDK_BEGIN_NAMESPACE
 
 struct AreaTriggerProxy : public PhysicsProxy
 {
-	/* 0x0030 */ std::int32_t m_iAreaTriggerId;
-private:
-	/* 0x0034 */ char pad_0x34[0xC];
+	/* 0x0030 */ SDK_PUB std::int32_t m_iAreaTriggerId;
+	/* 0x0034 */ SDK_PRI char pad_0x34[0xC];
 }; // Size: 0x40
 
 static_assert(offsetof(AreaTriggerProxy, AreaTriggerProxy::m_iAreaTriggerId) == 0x30, "AreaTriggerProxy::m_iAreaTriggerId: Incorrect offset");
