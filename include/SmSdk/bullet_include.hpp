@@ -9,6 +9,7 @@
 #include <BulletCollision/CollisionDispatch/btGhostObject.h>
 #include <BulletCollision/CollisionShapes/btBoxShape.h>
 #include <BulletDynamics/Dynamics/btRigidBody.h>
+#include <BulletDynamics/Dynamics/btActionInterface.h>
 #else
 // This is a stub, please define `SMSDK_ENABLE_PHYSICS` to use Bullet Physics
 struct btRigidBody
