@@ -1,7 +1,7 @@
 #include "SmSdk/Util/Color.hpp"
 #include "SmSdk/config.hpp"
 
-SMSDK_USE_NAMESPACE
+SMSDK_BEGIN_NAMESPACE
 
 ColorBGRA::ColorBGRA(Color color)
     : b(color.b), g(color.g), r(color.r), a(color.a) {}
@@ -153,3 +153,5 @@ uint32_t RatioToRGB(double ratio)
 
 	return r + (g << 8) + (b << 16);
 }
+
+SMSDK_END_NAMESPACE
