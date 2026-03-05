@@ -147,7 +147,11 @@ class Character : public NetObj
 	/* 0x00B4 */ SDK_PUB DirectX::XMFLOAT3 m_velocityDirection;
 	/* 0x00C0 */ SDK_PUB DirectX::XMFLOAT3 m_velocity;
 	/* 0x00CC */ SDK_PUB DirectX::XMFLOAT3 m_acceleration;
-	/* 0x00D8 */ SDK_PRI char pad_0xD8[0x7CC];
+	/* 0x00D8 */ SDK_PRI char pad_0xD8[0x30];
+	/* 0x0108 */ SDK_PUB float m_fWalkYaw;
+	/* 0x010C */ SDK_PUB float m_fYaw;
+	/* 0x0110 */ SDK_PUB float m_fPitch;
+	/* 0x0114 */ SDK_PRI char pad_0x114[0x790];
 	/* 0x08A4 */ SDK_PUB DirectX::XMFLOAT3 m_upDirection;
 	/* 0x08B0 */ SDK_PRI char pad_0x8B0[0x8];
 	/* 0x08B8 */ SDK_PUB std::int32_t m_iNextLockingInteractableId;
@@ -210,6 +214,9 @@ static_assert(offsetof(Character, Character::m_position) == 0xA8, "Character::m_
 static_assert(offsetof(Character, Character::m_velocityDirection) == 0xB4, "Character::m_velocityDirection: Incorrect offset");
 static_assert(offsetof(Character, Character::m_velocity) == 0xC0, "Character::m_velocity: Incorrect offset");
 static_assert(offsetof(Character, Character::m_acceleration) == 0xCC, "Character::m_acceleration: Incorrect offset");
+static_assert(offsetof(Character, Character::m_fWalkYaw) == 0x108, "Character::m_fWalkYaw: Incorrect offset");
+static_assert(offsetof(Character, Character::m_fYaw) == 0x10C, "Character::m_fYaw: Incorrect offset");
+static_assert(offsetof(Character, Character::m_fPitch) == 0x110, "Character::m_fPitch: Incorrect offset");
 static_assert(offsetof(Character, Character::m_upDirection) == 0x8A4, "Character::m_upDirection: Incorrect offset");
 static_assert(offsetof(Character, Character::m_iNextLockingInteractableId) == 0x8B8, "Character::m_iNextLockingInteractableId: Incorrect offset");
 static_assert(offsetof(Character, Character::m_iLockingInteractableId) == 0x8BC, "Character::m_iLockingInteractableId: Incorrect offset");
