@@ -9,7 +9,7 @@ SMSDK_BEGIN_NAMESPACE
 struct CharacterPhysicsProxy : public PhysicsProxy
 {
 	/* 0x0030 */ SDK_PRI char pad_0x30[0x8];
-	/* 0x0038 */ SDK_PUB struct CharacterController* m_pController;
+	/* 0x0038 */ SDK_PUB class CharacterController* m_pController;
 	/* 0x0040 */ SDK_PRI char pad_0x40[0x38];
 	/* 0x0078 */ SDK_PUB btCollisionObject* m_pCollisionObj2;
 	/* 0x0080 */ SDK_PUB btCollisionObject* m_pCollisionObj3;
