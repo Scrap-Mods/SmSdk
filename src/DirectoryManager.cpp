@@ -3,7 +3,9 @@
 
 SMSDK_USE_NAMESPACE
 
-bool DirectoryManager::getReplacement(const std::string& key, std::string& replacement)
+bool DirectoryManager::getReplacement(
+	const std::string_view& key,
+	std::string_view& replacement)
 {
 	auto iter = m_mapContentKeyToPathList.find(key);
 	if (iter == m_mapContentKeyToPathList.end())
@@ -43,7 +45,9 @@ bool DirectoryManager::ReplacePathR(std::string& path)
 	return pDirectoryManager->replacePathR(path);
 }
 
-bool DirectoryManager::GetReplacement(const std::string& key, std::string& replacement)
+bool DirectoryManager::GetReplacement(
+	const std::string_view& key,
+	std::string_view& replacement)
 {
 	DirectoryManager* pDirectoryManager = DirectoryManager::GetInstance();
 	if (!pDirectoryManager)
