@@ -8,16 +8,18 @@ SMSDK_USE_NAMESPACE
 
 #if defined(SMSDK_ENABLE_MYGUI)
 
-OptionsSubMenuBase::OptionsSubMenuBase() : m_pSubMenuWidget(nullptr),
-                                           m_pContainerHostPanel(nullptr),
-                                           m_pContainer(nullptr),
-                                           m_pScrollBar(nullptr),
-                                           m_itemSize(456, 40),
-                                           m_leftStackBox(m_itemSize),
-                                           m_rightStackBox(m_itemSize),
-                                           m_vecOptionItems(),
-                                           m_iScrollValue(0),
-                                           m_containerPos(0, 0) {}
+OptionsSubMenuBase::OptionsSubMenuBase()
+	: m_pSubMenuWidget(nullptr)
+	, m_pContainerHostPanel(nullptr)
+	, m_pContainer(nullptr)
+	, m_pScrollBar(nullptr)
+	, m_itemSize(456, 40)
+	, m_leftStackBox(m_itemSize)
+	, m_rightStackBox(m_itemSize)
+	, m_vecOptionItems()
+	, m_iScrollValue(0)
+	, m_containerPos(0, 0)
+{}
 
 void OptionsSubMenuBase::onScrollChangePos(MyGUI::ScrollBar* pCaller, size_t iPos)
 {

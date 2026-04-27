@@ -6,8 +6,5 @@ SMSDK_USE_NAMESPACE
 
 Character* MyPlayer::getCharacter() const
 {
-	if (!this->m_player)
-		return nullptr;
-
-	return CharacterManager::GetCharacter(this->m_player->m_iCharacterId);
+	return m_player ? CharacterManager::GetCharacter(m_player->m_uCharacterId) : nullptr;
 }

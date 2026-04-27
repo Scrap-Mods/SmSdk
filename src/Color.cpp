@@ -3,8 +3,27 @@
 
 SMSDK_BEGIN_NAMESPACE
 
-ColorBGRA::ColorBGRA(Color color)
-    : b(color.b), g(color.g), r(color.r), a(color.a) {}
+ColorBGRA::ColorBGRA(const Color color)
+	: b(color.b)
+	, g(color.g)
+	, r(color.r)
+	, a(color.a)
+{}
+
+Color::Color(const ColorBGRA col)
+	: r(col.r)
+	, g(col.g)
+	, b(col.b)
+	, a(col.a)
+{}
+
+Color::Color(const std::uint32_t col)
+	: data(col)
+{}
+
+Color::Color(const std::uint64_t col)
+	: data(std::uint32_t(col))
+{}
 
 Color::Color(const std::string& col)
 {
@@ -16,39 +35,42 @@ Color::Color(const std::string& col)
 
 	if (col.size() == 6)
 	{
-		this->r = uint8_t(std::strtol(col.substr(0, 2).c_str(), nullptr, 16));
-		this->g = uint8_t(std::strtol(col.substr(2, 2).c_str(), nullptr, 16));
-		this->b = uint8_t(std::strtol(col.substr(4, 2).c_str(), nullptr, 16));
+		this->r = std::uint8_t(std::strtol(col.substr(0, 2).c_str(), nullptr, 16));
+		this->g = std::uint8_t(std::strtol(col.substr(2, 2).c_str(), nullptr, 16));
+		this->b = std::uint8_t(std::strtol(col.substr(4, 2).c_str(), nullptr, 16));
 	}
 	else
 	{
-		this->data = (uint32_t) std::strtoul(col.c_str(), nullptr, 16);
+		this->data = (std::uint32_t)std::strtoul(col.c_str(), nullptr, 16);
 	}
 
 	this->a = 0xff;
 }
 
-Color::Color(uint32_t col)
-    : data(col) {}
-
-Color::Color(uint64_t col)
-    : data(uint32_t(col)) {}
-
-Color::Color(ColorBGRA col)
-    : r(col.r), g(col.g), b(col.b), a(col.a) {}
-
-float Color::getFloat(size_t iIdx)
+float Color::getFloat(const std::size_t iIdx) const
 {
 	return float(this->colArr[iIdx]) * (1.0f / 255.0f);
 }
 
-void Color::setFloat(size_t iIdx, float fVal)
+void Color::setFloat(const std::size_t iIdx, const float fVal)
 {
-	this->colArr[iIdx] = uint8_t(fVal * 255.0f);
+	this->colArr[iIdx] = std::uint8_t(fVal * 255.0f);
 }
 
+std::string Color::toHexStringRGB() const
+{
+	char buffer[10];
+	sprintf_s(buffer, "%02X%02X%02X", std::uint32_t(this->r), std::uint32_t(this->g), std::uint32_t(this->b));
 
-void RGBtoHSV(Color col, float& fH, float& fS, float& fV)
+	return std::string(buffer, 6);
+}
+
+bool Color::operator==(const Color other) const noexcept
+{
+	return this->data == other.data;
+}
+
+void Color::RGBtoHSV(const Color col, float& fH, float& fS, float& fV)
 {
 	const float fR = col.getFloat(0);
 	const float fG = col.getFloat(1);
@@ -97,7 +119,7 @@ void RGBtoHSV(Color col, float& fH, float& fS, float& fV)
 	}
 }
 
-uint32_t RatioToRGB(double ratio)
+std::uint32_t Color::RatioToRGB(const double ratio)
 {
 	//we want to normalize ratio so that it fits in to 6 regions
 	//where each region is 256 units long

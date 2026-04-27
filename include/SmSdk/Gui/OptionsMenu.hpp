@@ -10,7 +10,7 @@ SMSDK_BEGIN_NAMESPACE
 class OptionsMenu : public GuiBase
 {
 	/* 0x0018 */ SDK_PUB class MainMenuRootGui* m_pMenuRootGui;
-	/* 0x0020 */ SDK_PRI bool m_bSomeFlag;
+	/* 0x0020 */ SDK_PUB bool m_bSomeFlag;
 	/* 0x0021 */ SDK_PUB bool m_bIsServer;
 	/* 0x0022 */ SDK_PRI char pad_0x22[0x6];
 	/* 0x0028 */ SDK_PUB std::shared_ptr<CompoundButton> m_pCompoundButton;

@@ -7,7 +7,7 @@ SMSDK_USE_NAMESPACE
 
 Character* Player::getCharacter() const
 {
-	return CharacterManager::GetCharacter(this->m_iCharacterId);
+	return CharacterManager::GetCharacter(m_uCharacterId);
 }
 
 bool Player::characterExists() const

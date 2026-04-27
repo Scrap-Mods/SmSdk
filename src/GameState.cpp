@@ -3,7 +3,7 @@
 
 SMSDK_USE_NAMESPACE
 
-bool GameState::IsCurrentGameState(EGameStateType gsType)
+bool GameState::IsCurrentGameState(const EGameStateType gsType)
 {
 	GameState* pCurrentState = GameState::GetCurrentState();
 	if (!pCurrentState)
@@ -12,21 +12,21 @@ bool GameState::IsCurrentGameState(EGameStateType gsType)
 	return pCurrentState->getGameStateType() == gsType;
 }
 
-bool GameState::IsCurrentOrNextGameState(EGameStateType gsType)
+bool GameState::IsCurrentOrNextGameState(const EGameStateType gsType)
 {
-	GameState* pCurrentState = GameState::GetCurrentState();
-	if (!pCurrentState)
-		return false;
-
-	if (pCurrentState->getGameStateType() == gsType)
-		return true;
-
-	if (pCurrentState->getGameStateType() == GameState_LoadState)
+	GameState* v_pCurState = GameState::GetCurrentState();
+	if (v_pCurState)
 	{
-		LoadState* pLoadState = reinterpret_cast<LoadState*>(pCurrentState);
-		if (pLoadState->m_pNextState && pLoadState->m_pNextState->getGameStateType() == gsType)
-		{
+		const auto v_pCurStateType = v_pCurState->getGameStateType();
+
+		if (v_pCurStateType == gsType)
 			return true;
+
+		if (v_pCurStateType == EGameStateType::LoadState)
+		{
+			LoadState* v_pLoadState = reinterpret_cast<LoadState*>(v_pCurState);
+			if (v_pLoadState->m_pNextState && v_pLoadState->m_pNextState->getGameStateType() == gsType)
+				return true;
 		}
 	}
 
@@ -35,12 +35,9 @@ bool GameState::IsCurrentOrNextGameState(EGameStateType gsType)
 
 SteamNetworkClient* GameState::GetSteamNetworkClient()
 {
-	GameState* pCurrentState = GameState::GetCurrentState();
-	if (!pCurrentState)
-		return nullptr;
-
-	if (pCurrentState->getGameStateType() == GameState_PlayState)
-		return reinterpret_cast<PlayState*>(pCurrentState)->m_pSteamNetworkClient.get();
+	GameState* v_pCurState = GameState::GetCurrentState();
+	if (v_pCurState && v_pCurState->getGameStateType() == EGameStateType::PlayState)
+		return reinterpret_cast<PlayState*>(v_pCurState)->m_pSteamNetworkClient.get();
 
 	return nullptr;
 }

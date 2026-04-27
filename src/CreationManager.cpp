@@ -1,7 +1,7 @@
 #include "SmSdk/Creation/CreationManager.hpp"
 #include "SmSdk/config.hpp"
 
-SMSDK_USE_NAMESPACE
+SMSDK_BEGIN_NAMESPACE
 
 BodyState* CreationManager::_getBodyState(const std::uint32_t uId)
 {
@@ -23,18 +23,20 @@ JointState* CreationManager::_getJointState(const std::uint32_t uId)
 
 BodyState* CreationManager::GetBodyState(const std::uint32_t uId)
 {
-	CreationManager* pCreationManager = CreationManager::GetInstance();
-	if (!pCreationManager)
-		return nullptr;
+	CreationManager* v_pCreationMgr = CreationManager::GetInstance();
+	if (v_pCreationMgr)
+		return v_pCreationMgr->_getBodyState(uId);
 
-	return pCreationManager->_getBodyState(uId);
+	return nullptr;
 }
 
 JointState* CreationManager::GetJointState(const std::uint32_t uId)
 {
-	CreationManager* pCreationManager = CreationManager::GetInstance();
-	if (!pCreationManager)
-		return nullptr;
+	CreationManager* v_pCreationMgr = CreationManager::GetInstance();
+	if (v_pCreationMgr)
+		return v_pCreationMgr->_getJointState(uId);
 
-	return pCreationManager->_getJointState(uId);
+	return nullptr;
 }
+
+SMSDK_END_NAMESPACE
