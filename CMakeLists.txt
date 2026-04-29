@@ -17,7 +17,13 @@ if (SMSDK_BUILD_SHARED_LIBRARY)
 	add_subdirectory(deps/MinHook)
 	add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
 	target_compile_definitions(${PROJECT_NAME} PRIVATE SMSDK_BUILD_DLL)
-	target_link_libraries(${PROJECT_NAME} PRIVATE MinHook)
+	target_include_directories(${PROJECT_NAME} PRIVATE
+		${CMAKE_SOURCE_DIR}/deps/MyGUIEngine/include
+	)
+	target_link_libraries(${PROJECT_NAME} PRIVATE
+		${CMAKE_SOURCE_DIR}/deps/MyGUIEngine/lib/MyGUIEngine.lib
+		MinHook
+	)
 else()
 	add_library(${PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES})
 endif()
