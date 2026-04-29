@@ -20,38 +20,41 @@ bool DirectoryManager::replacePathR(std::string& path)
 	if (path.empty() || path[0] != L'$')
 		return false;
 
-	const char* pBegin = path.data();
-	const char* pKey = std::strchr(pBegin, L'/');
-	if (pKey == nullptr)
+	const char* v_keyBeg = path.data();
+	const char* v_keyPtr = std::strchr(v_keyBeg, L'/');
+	if (v_keyPtr == nullptr) return false;
+
+	std::string_view v_keyChunk(v_keyBeg, v_keyPtr);
+	const auto v_iter = m_mapContentKeyToPathList.find(v_keyChunk);
+	if (v_iter == m_mapContentKeyToPathList.end())
 		return false;
 
-	const size_t iKeyIdx = pKey - pBegin;
+	const auto v_pathBegin = path.begin();
+	path.replace(
+		v_pathBegin,
+		v_pathBegin + v_keyChunk.size(),
+		std::string_view(v_iter->second)
+	);
 
-	const std::string keyChunk = path.substr(0, iKeyIdx);
-	const auto iter = m_mapContentKeyToPathList.find(keyChunk);
-	if (iter == m_mapContentKeyToPathList.end())
-		return false;
-
-	path = (iter->second + path.substr(iKeyIdx));
 	return true;
-}
-
-bool DirectoryManager::ReplacePathR(std::string& path)
-{
-	DirectoryManager* pDirectoryManager = DirectoryManager::GetInstance();
-	if (!pDirectoryManager)
-		return false;
-
-	return pDirectoryManager->replacePathR(path);
 }
 
 bool DirectoryManager::GetReplacement(
 	const std::string_view& key,
 	std::string_view& replacement)
 {
-	DirectoryManager* pDirectoryManager = DirectoryManager::GetInstance();
-	if (!pDirectoryManager)
+	DirectoryManager* v_pDirMgr = DirectoryManager::GetInstance();
+	if (v_pDirMgr)
+		return v_pDirMgr->getReplacement(key, replacement);
+	else
 		return false;
+}
 
-	return pDirectoryManager->getReplacement(key, replacement);
+bool DirectoryManager::ReplacePathR(std::string& path)
+{
+	DirectoryManager* v_pDirMgr = DirectoryManager::GetInstance();
+	if (v_pDirMgr)
+		return v_pDirMgr->replacePathR(path);
+	else
+		return false;
 }
