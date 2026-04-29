@@ -2,7 +2,7 @@
 
 SMSDK_BEGIN_NAMESPACE
 
-void InGameGuiManager::_displayAlertText(
+void InGameGuiManager::displayAlertText(
 	const std::string_view& text,
 	const float duration)
 {
@@ -13,7 +13,7 @@ void InGameGuiManager::_displayAlertText(
 	m_pHudGui->m_fAlertTextTimer = duration;
 }
 
-void InGameGuiManager::_setInteractionText(const std::vector<std::string>& vec)
+void InGameGuiManager::setInteractionText(const std::vector<std::string>& vec)
 {
 	if (m_pHudGui)
 	{
@@ -28,14 +28,14 @@ void InGameGuiManager::DisplayAlertText(const std::string_view& text, const floa
 {
 	InGameGuiManager* v_pInGameGuiMgr = InGameGuiManager::GetInstance();
 	if (v_pInGameGuiMgr)
-		v_pInGameGuiMgr->_displayAlertText(text, duration);
+		v_pInGameGuiMgr->displayAlertText(text, duration);
 }
 
 void InGameGuiManager::SetInteractionText(const std::vector<std::string>& vec)
 {
 	InGameGuiManager* v_pInGameGuiMgr = InGameGuiManager::GetInstance();
 	if (v_pInGameGuiMgr)
-		return v_pInGameGuiMgr->_setInteractionText(vec);
+		return v_pInGameGuiMgr->setInteractionText(vec);
 }
 
 SMSDK_END_NAMESPACE

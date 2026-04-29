@@ -11,25 +11,6 @@ bool GuiSystemManager::IsMouseVisible()
 		return false;
 }
 
-int GuiSystemManager::ProcessScroll(
-	const int unknownVal,
-	const int scrollDistance,
-	const int topPos,
-	const int scrollVal,
-	const float itemSize)
-{
-	if (unknownVal <= 0)
-		return 0;
-
-	const int vScrollClamped = (scrollVal <= 0)
-		? -scrollDistance
-		: scrollDistance;
-
-	const int vVal = topPos - int(vScrollClamped * -itemSize);
-
-	return std::min(std::max(-unknownVal, vVal), 0);
-}
-
 std::int32_t GuiSystemManager::getScreenWidth() const
 {
 	return m_iScreenWidth;

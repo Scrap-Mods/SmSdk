@@ -6,7 +6,7 @@
 
 SMSDK_USE_NAMESPACE
 
-#if defined(SMSDK_ENABLE_MYGUI)
+#if defined(SMSDK_ENABLE_MYGUI) || defined(SMSDK_BUILD_DLL)
 
 OptionsSubMenuBase::OptionsSubMenuBase()
 	: m_pSubMenuWidget(nullptr)
@@ -19,7 +19,10 @@ OptionsSubMenuBase::OptionsSubMenuBase()
 	, m_vecOptionItems()
 	, m_iScrollValue(0)
 	, m_containerPos(0, 0)
-{}
+{
+	using fSubMenuBaseConstructor = void (*)(OptionsSubMenuBase*);
+	Memory::Read<fSubMenuBaseConstructor>(SM_CONSTRUCTOR_OPTIONS_SUB_MENU_BASE_OFFSET)(this);
+}
 
 void OptionsSubMenuBase::onScrollChangePos(MyGUI::ScrollBar* pCaller, size_t iPos)
 {
@@ -34,7 +37,7 @@ void OptionsSubMenuBase::onScroll(MyGUI::Widget* pCaller, int iScrollVal)
 {
 	SMSDK_UNREF(pCaller);
 
-	m_containerPos.top = GuiSystemManager::ProcessScroll(
+	m_containerPos.top = SM::GuiSystemManager::ProcessScroll(
 	    m_iScrollValue, m_itemSize.height, m_containerPos.top, iScrollVal,
 	    GuiSystemManager::GetInstance()->getOptionItemSize());
 

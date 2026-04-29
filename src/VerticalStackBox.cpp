@@ -7,10 +7,10 @@
 
 SMSDK_USE_NAMESPACE
 
-#if defined(SMSDK_ENABLE_MYGUI)
+#if defined(SMSDK_ENABLE_MYGUI) || defined(SMSDK_BUILD_DLL)
 
-VerticalStackBox::VerticalStackBox(MyGUI::IntSize item_sz)
-	: m_itemSize(item_sz)
+VerticalStackBox::VerticalStackBox(MyGUI::IntSize itemSz)
+	: m_itemSize(itemSz)
 	, m_skin("PanelEmpty")
 	, m_pParent(nullptr)
 	, m_pEmptyPanel(nullptr)
@@ -18,7 +18,7 @@ VerticalStackBox::VerticalStackBox(MyGUI::IntSize item_sz)
 	, m_bEnableSeparators(true)
 	, m_iSomeVal3(0)
 	, m_iSomeVal4(4)
-	, m_iScrollDistance(item_sz.height)
+	, m_iScrollDistance(itemSz.height)
 	, m_iScrollValue(0)
 	, m_iSomeVal7(0)
 	, m_panelPos(0, 0)

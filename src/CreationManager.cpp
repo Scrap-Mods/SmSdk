@@ -3,40 +3,40 @@
 
 SMSDK_BEGIN_NAMESPACE
 
-BodyState* CreationManager::_getBodyState(const std::uint32_t uId)
+BodyState* CreationManager::getBodyState(const std::uint32_t uId)
 {
-	auto iter = m_mapBodyStates.find(uId);
-	if (iter == m_mapBodyStates.end())
+	auto v_iter = m_mapBodyStates.find(uId);
+	if (v_iter != m_mapBodyStates.end())
+		return &v_iter->second;
+	else
 		return nullptr;
-
-	return &iter->second;
 }
 
-JointState* CreationManager::_getJointState(const std::uint32_t uId)
+JointState* CreationManager::getJointState(const std::uint32_t uId)
 {
-	auto iter = m_mapJointStates.find(uId);
-	if (iter == m_mapJointStates.end())
+	auto v_iter = m_mapJointStates.find(uId);
+	if (v_iter == m_mapJointStates.end())
+		return &v_iter->second;
+	else
 		return nullptr;
-
-	return &iter->second;
 }
 
 BodyState* CreationManager::GetBodyState(const std::uint32_t uId)
 {
 	CreationManager* v_pCreationMgr = CreationManager::GetInstance();
 	if (v_pCreationMgr)
-		return v_pCreationMgr->_getBodyState(uId);
-
-	return nullptr;
+		return v_pCreationMgr->getBodyState(uId);
+	else
+		return nullptr;
 }
 
 JointState* CreationManager::GetJointState(const std::uint32_t uId)
 {
 	CreationManager* v_pCreationMgr = CreationManager::GetInstance();
 	if (v_pCreationMgr)
-		return v_pCreationMgr->_getJointState(uId);
-
-	return nullptr;
+		return v_pCreationMgr->getJointState(uId);
+	else
+		return nullptr;
 }
 
 SMSDK_END_NAMESPACE
