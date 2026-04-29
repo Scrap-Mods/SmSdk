@@ -19,6 +19,7 @@ if (SMSDK_BUILD_SHARED_LIBRARY)
 	target_compile_definitions(${PROJECT_NAME} PRIVATE SMSDK_BUILD_DLL)
 	target_include_directories(${PROJECT_NAME} PRIVATE
 		${CMAKE_SOURCE_DIR}/deps/MyGUIEngine/include
+		${CMAKE_SOURCE_DIR}/deps/bullet3
 	)
 	target_link_libraries(${PROJECT_NAME} PRIVATE
 		${CMAKE_SOURCE_DIR}/deps/MyGUIEngine/lib/MyGUIEngine.lib
