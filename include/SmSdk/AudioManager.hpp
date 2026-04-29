@@ -31,8 +31,11 @@ class AudioManager : public Task
 {
 	SDK_PUB SMSDK_API static AudioManager* GetInstance();
 
-	SDK_PUB SMSDK_API void _playSound(const std::string& soundName, const std::uint16_t uWorldId = 0xFFFF);
-	SDK_PUB SMSDK_API static void PlaySound(const std::string& soundName, const std::uint16_t uWorldId = 0xFFFF);
+	SDK_PUB SMSDK_API void playSound(const std::string_view& soundName, const std::uint16_t uWorldId = 0xFFFF);
+	SDK_PUB SMSDK_API static void PlaySound(const std::string_view& soundName, const std::uint16_t uWorldId = 0xFFFF);
+
+	SDK_PUB SMSDK_API FMOD::Studio::System* getFmodStudioSystem();
+	SDK_PUB SMSDK_API FMOD::System* getFmodSystem();
 
 	/* 0x0008 */ SDK_PUB std::shared_ptr<struct AudioEventManager> m_pAudioEventManager;
 	/* 0x0018 */ SDK_PUB std::mutex m_mutex;

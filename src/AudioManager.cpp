@@ -13,8 +13,8 @@ EventData::EventData(
 	, m_pAudioEvent()
 {}
 
-void AudioManager::_playSound(
-	const std::string& soundName,
+void AudioManager::playSound(
+	const std::string_view& soundName,
 	const std::uint16_t uWorldId)
 {
 	std::lock_guard<std::mutex> lock(m_mutex);
@@ -22,12 +22,22 @@ void AudioManager::_playSound(
 }
 
 void AudioManager::PlaySound(
-	const std::string& soundName,
+	const std::string_view& soundName,
 	const std::uint16_t uWorldId)
 {
 	AudioManager* v_pAudioMgr = AudioManager::GetInstance();
 	if (v_pAudioMgr)
-		v_pAudioMgr->_playSound(soundName, uWorldId);
+		v_pAudioMgr->playSound(soundName, uWorldId);
+}
+
+FMOD::Studio::System* AudioManager::getFmodStudioSystem()
+{
+	return m_pFmodStudioSystem;
+}
+
+FMOD::System* AudioManager::getFmodSystem()
+{
+	return m_pFmodSystem;
 }
 
 SMSDK_END_NAMESPACE
