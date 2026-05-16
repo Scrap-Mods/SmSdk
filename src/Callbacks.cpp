@@ -1,3 +1,4 @@
+#include "SmSdk/Gui/OptionsMenu.hpp"
 #include "SmSdk/Callbacks.hpp"
 #include "SmSdk/offsets.hpp"
 
@@ -71,6 +72,9 @@ void Callbacks::OnClientPacketCallbackHandler(
 	o_OnClientPacketCallbackHandler(self, steamId, packetData, packetDataSz, someFlag);
 }
 
+static void (*o_OptionsMenuConstructor)(OptionsMenu*, class GuiBase*, const bool);
+static void (*o_OptionsMenuInitialize)(OptionsMenu*);
+
 bool Callbacks::InstallHandlers()
 {
 	const std::uintptr_t v_moduleBase = std::uintptr_t(GetModuleHandleA(nullptr));
@@ -91,6 +95,18 @@ bool Callbacks::InstallHandlers()
 		reinterpret_cast<LPVOID>(v_moduleBase + SM_FUNC_CLIENT_PACKET_HANDLER),
 		reinterpret_cast<LPVOID>(Callbacks::OnClientPacketCallbackHandler),
 		reinterpret_cast<LPVOID*>(&o_OnClientPacketCallbackHandler)
+	) != MH_OK) return false;
+
+	if (MH_CreateHook(
+		reinterpret_cast<LPVOID>(v_moduleBase + SM_FUNC_OPTIONS_MENU_CONSTRUCTOR),
+		reinterpret_cast<LPVOID>(OptionsMenu::Constructor),
+		reinterpret_cast<LPVOID*>(&o_OptionsMenuConstructor)
+	) != MH_OK) return false;
+
+	if (MH_CreateHook(
+		reinterpret_cast<LPVOID>(v_moduleBase + SM_FUNC_OPTIONS_MENU_INITIALIZE),
+		reinterpret_cast<LPVOID>(OptionsMenu::Initialize),
+		reinterpret_cast<LPVOID*>(&o_OptionsMenuInitialize)
 	) != MH_OK) return false;
 
 	return true;
