@@ -96,6 +96,57 @@ OptionsMenu* OptionsMenu::Constructor(
 	return self;
 }
 
+static void InitializeButtonList(
+	OptionsMenu* self,
+	std::vector<MyGUI::Button*>& outVecButtons)
+{
+	MyGUI::Widget* v_pGfxWidget = self->m_pMainPanel->findWidget("Graphics");
+	MyGUI::Widget* v_pDisplayWidget = self->m_pMainPanel->findWidget("Display");
+	
+	const float v_parentWidth = static_cast<float>(v_pDisplayWidget->getParentSize().width);
+	const int v_tabDistance = static_cast<int>(v_parentWidth / 500.0f);
+	int v_tabOffset = static_cast<int>(v_parentWidth / 40.0f);
+	
+	const MyGUI::IntCoord v_tabData = v_pDisplayWidget->getCoord();
+	for (const auto& v_curTab : ms_vecOptionCallbacks)
+	{
+		if (!v_curTab.canCreate(self)) continue;
+
+		MyGUI::Button* v_pCurTabWidgetBtn;
+
+		MyGUI::Widget* v_pCurTabWidget = self->m_pMainPanel->findWidget(v_curTab.m_tabGuiName);
+		if (!v_pCurTabWidget)
+		{
+			const MyGUI::IntCoord v_newTabPos(
+				v_tabOffset,
+				v_tabData.top,
+				v_tabData.width,
+				v_tabData.height);
+
+			v_pCurTabWidgetBtn = v_pGfxWidget->getParent()->createWidget<MyGUI::Button>(
+				"InventoryTab", v_newTabPos, MyGUI::Align::Default, v_curTab.m_tabGuiName);
+
+			v_pCurTabWidgetBtn->setFontName("SM_Tab");
+			v_pCurTabWidgetBtn->setCaption(v_curTab.m_tabCaption);
+			v_pCurTabWidgetBtn->setTextAlign(MyGUI::Align::Center);
+		}
+		else
+		{
+			v_pCurTabWidgetBtn = v_pCurTabWidget->castType<MyGUI::Button>();
+		}
+
+		const int v_textSize = v_pCurTabWidgetBtn->getTextSize().width;
+
+		auto v_adjustedTabPos = v_pCurTabWidgetBtn->getCoord();
+		v_adjustedTabPos.left = v_tabOffset;
+		v_adjustedTabPos.width = v_textSize + static_cast<int>(v_parentWidth / (15.0f * 2.0f));
+		v_pCurTabWidgetBtn->setCoord(v_adjustedTabPos);
+
+		outVecButtons.push_back(v_pCurTabWidgetBtn);
+		v_tabOffset += (v_tabDistance + v_adjustedTabPos.width);
+	}
+}
+
 void OptionsMenu::Initialize(OptionsMenu* self)
 {
 	SM::GuiSystemManager* v_pGuiSysMgr = SM::GuiSystemManager::GetInstance();
@@ -126,53 +177,7 @@ void OptionsMenu::Initialize(OptionsMenu* self)
 	self->m_pCompoundButton = CompoundButton::New(v_pBackWidget);
 
 	std::vector<MyGUI::Button*> v_tabButtons;
-	{
-		MyGUI::Widget* v_pGfxWidget = self->m_pMainPanel->findWidget("Graphics");
-		MyGUI::Widget* v_pDisplayWidget = self->m_pMainPanel->findWidget("Display");
-		
-		const float v_parentWidth = static_cast<float>(v_pDisplayWidget->getParentSize().width);
-		const int v_tabDistance = static_cast<int>(v_parentWidth / 500.0f);
-		int v_tabOffset = static_cast<int>(v_parentWidth / 40.0f);
-		
-		const MyGUI::IntCoord v_tabData = v_pDisplayWidget->getCoord();
-		for (const auto& v_curTab : ms_vecOptionCallbacks)
-		{
-			if (!v_curTab.canCreate(self)) continue;
-
-			MyGUI::Button* v_pCurTabWidgetBtn;
-
-			MyGUI::Widget* v_pCurTabWidget = self->m_pMainPanel->findWidget(v_curTab.m_tabGuiName);
-			if (!v_pCurTabWidget)
-			{
-				const MyGUI::IntCoord v_newTabPos(
-					v_tabOffset,
-					v_tabData.top,
-					v_tabData.width,
-					v_tabData.height);
-
-				v_pCurTabWidgetBtn = v_pGfxWidget->getParent()->createWidget<MyGUI::Button>(
-					"InventoryTab", v_newTabPos, MyGUI::Align::Default, v_curTab.m_tabGuiName);
-
-				v_pCurTabWidgetBtn->setFontName("SM_Tab");
-				v_pCurTabWidgetBtn->setCaption(v_curTab.m_tabCaption);
-				v_pCurTabWidgetBtn->setTextAlign(MyGUI::Align::Center);
-			}
-			else
-			{
-				v_pCurTabWidgetBtn = v_pCurTabWidget->castType<MyGUI::Button>();
-			}
-
-			const int v_textSize = v_pCurTabWidgetBtn->getTextSize().width;
-
-			auto v_adjustedTabPos = v_pCurTabWidgetBtn->getCoord();
-			v_adjustedTabPos.left = v_tabOffset;
-			v_adjustedTabPos.width = v_textSize + static_cast<int>(v_parentWidth / (15.0f * 2.0f));
-			v_pCurTabWidgetBtn->setCoord(v_adjustedTabPos);
-
-			v_tabButtons.push_back(v_pCurTabWidgetBtn);
-			v_tabOffset += (v_tabDistance + v_adjustedTabPos.width);
-		}
-	}
+	InitializeButtonList(self, v_tabButtons);
 
 	for (auto& v_curTab : self->m_mapSubMenus)
 	{
