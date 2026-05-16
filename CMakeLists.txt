@@ -20,9 +20,11 @@ if (SMSDK_BUILD_SHARED_LIBRARY)
 	target_include_directories(${PROJECT_NAME} PRIVATE
 		${CMAKE_SOURCE_DIR}/deps/MyGUIEngine/include
 		${CMAKE_SOURCE_DIR}/deps/bullet3
+		${CMAKE_SOURCE_DIR}/deps/lz4/include
 	)
 	target_link_libraries(${PROJECT_NAME} PRIVATE
 		${CMAKE_SOURCE_DIR}/deps/MyGUIEngine/lib/MyGUIEngine.lib
+		${CMAKE_SOURCE_DIR}/deps/lz4/static/liblz4_static.lib
 		MinHook
 	)
 else()
