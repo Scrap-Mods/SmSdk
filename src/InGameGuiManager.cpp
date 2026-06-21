@@ -35,7 +35,35 @@ void InGameGuiManager::SetInteractionText(const std::vector<std::string>& vec)
 {
 	InGameGuiManager* v_pInGameGuiMgr = InGameGuiManager::GetInstance();
 	if (v_pInGameGuiMgr)
-		return v_pInGameGuiMgr->setInteractionText(vec);
+		v_pInGameGuiMgr->setInteractionText(vec);
+}
+
+std::shared_ptr<HudGui2> InGameGuiManager::getHudGui()
+{
+	return m_pHudGui;
+}
+
+std::shared_ptr<InventoryGui> InGameGuiManager::getInventoryGui()
+{
+	return m_pInventory;
+}
+
+std::shared_ptr<HudGui2> InGameGuiManager::GetHudGui()
+{
+	InGameGuiManager* v_pInGameGuiMgr = InGameGuiManager::GetInstance();
+	if (v_pInGameGuiMgr)
+		return v_pInGameGuiMgr->getHudGui();
+	else
+		return nullptr;
+}
+
+std::shared_ptr<InventoryGui> InGameGuiManager::GetInventoryGui()
+{
+	InGameGuiManager* v_pInGameGuiMgr = InGameGuiManager::GetInstance();
+	if (v_pInGameGuiMgr)
+		return v_pInGameGuiMgr->getInventoryGui();
+	else
+		return nullptr;
 }
 
 SMSDK_END_NAMESPACE

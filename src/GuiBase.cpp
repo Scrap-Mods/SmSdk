@@ -31,4 +31,9 @@ bool GuiBase::isActive()
 void GuiBase::setFocus(const std::string& widget)
 { SMSDK_UNREF(widget); /* implemented by the game */ }
 
+MyGUI::Widget* GuiBase::getMainPanel()
+{
+    return m_pMainPanel;
+}
+
 SMSDK_END_NAMESPACE

@@ -1,10 +1,10 @@
 #include "SmSdk/Harvestable/HarvestableManager.hpp"
+#include "SmSdk/Character/CharacterManager.hpp"
 #include "SmSdk/Creation/CreationManager.hpp"
 #include "SmSdk/Gui/GuiSystemManager.hpp"
 #include "SmSdk/Gui/InGameGuiManager.hpp"
 #include "SmSdk/AreaTriggerManager.hpp"
 #include "SmSdk/DirectoryManager.hpp"
-#include "SmSdk/CharacterManager.hpp"
 #include "SmSdk/ContainerManager.hpp"
 #include "SmSdk/Physics/Physics.hpp"
 #include "SmSdk/PortalManager.hpp"
@@ -42,6 +42,7 @@ SMSDK_USE_NAMESPACE
 
 /////////GETTER DEFINITIONS
 
+GET_INSTANCE_DEFINE(CharacterManagerClient, SM_CHARACTER_MANAGER_CLIENT_OFFSET);
 GET_INSTANCE_DEFINE(AreaTriggerManager, SM_AREA_TRIGGER_MANAGER_OFFSET);
 GET_INSTANCE_DEFINE(HarvestableManager, SM_HARVESTABLE_MANAGER_OFFSET);
 GET_INSTANCE_DEFINE(InGameGuiManager, SM_IN_GAME_GUI_MANAGER_OFFSET);

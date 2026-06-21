@@ -1,4 +1,5 @@
-#include "SmSdk/Character.hpp"
+#include "Smsdk/Character/CharacterManager.hpp"
+#include "SmSdk/Character/Character.hpp"
 
 #include "SmSdk/Physics/CharacterPhysicsProxy.hpp"
 
@@ -48,6 +49,20 @@ DirectX::XMFLOAT3 Character::getPosition() const
 DirectX::XMFLOAT3 Character::getVelocity() const
 {
 	return m_velocity;
+}
+
+std::shared_ptr<CharacterGraphics> Character::getGraphics() const
+{
+	return CharacterManagerClient::GetCharacterGraphics(m_uId);
+}
+
+std::shared_ptr<GuiInterface> Character::getNameTagGui() const
+{
+	auto v_pCharGfx = getGraphics();
+	if (v_pCharGfx)
+		return v_pCharGfx->m_pNameTagGui;
+	else
+		return nullptr;
 }
 
 float Character::getPitch() const

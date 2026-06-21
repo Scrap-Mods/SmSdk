@@ -2,13 +2,13 @@
 
 SMSDK_BEGIN_NAMESPACE
 
-std::vector<HSteamNetConnection> SteamNetworkSend::getAllConnections() const
+std::vector<std::pair<std::uint64_t, HSteamNetConnection>> SteamNetworkSend::getAllConnections() const
 {
-	std::vector<HSteamNetConnection> v_vecConnections;
+	std::vector<std::pair<std::uint64_t, HSteamNetConnection>> v_vecConnections;
 
 	v_vecConnections.reserve(m_mapSteamIdToConnection.size());
 	for (const auto& [steamId, netConnection] : m_mapSteamIdToConnection)
-		v_vecConnections.push_back(netConnection);
+		v_vecConnections.emplace_back(steamId, netConnection);
 	
 	return v_vecConnections;
 }
