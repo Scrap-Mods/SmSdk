@@ -1,5 +1,9 @@
 #include "SmSdk/Gui/InGameGuiManager.hpp"
 
+#include "SmSdk/Gui/InventoryGui.hpp"
+#include "SmSdk/Gui/HudGui2.hpp"
+#include "SmSdk/Gui/ChatGui.hpp"
+
 SMSDK_BEGIN_NAMESPACE
 
 void InGameGuiManager::displayAlertText(
@@ -48,6 +52,11 @@ std::shared_ptr<InventoryGui> InGameGuiManager::getInventoryGui()
 	return m_pInventory;
 }
 
+std::shared_ptr<ChatGui> InGameGuiManager::getChatGui()
+{
+	return m_pChatGui;
+}
+
 std::shared_ptr<HudGui2> InGameGuiManager::GetHudGui()
 {
 	InGameGuiManager* v_pInGameGuiMgr = InGameGuiManager::GetInstance();
@@ -62,6 +71,15 @@ std::shared_ptr<InventoryGui> InGameGuiManager::GetInventoryGui()
 	InGameGuiManager* v_pInGameGuiMgr = InGameGuiManager::GetInstance();
 	if (v_pInGameGuiMgr)
 		return v_pInGameGuiMgr->getInventoryGui();
+	else
+		return nullptr;
+}
+
+std::shared_ptr<ChatGui> InGameGuiManager::GetChatGui()
+{
+	InGameGuiManager* v_pInGameGuiMgr = InGameGuiManager::GetInstance();
+	if (v_pInGameGuiMgr)
+		return v_pInGameGuiMgr->getChatGui();
 	else
 		return nullptr;
 }
