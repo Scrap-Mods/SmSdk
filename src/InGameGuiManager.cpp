@@ -6,15 +6,23 @@
 
 SMSDK_BEGIN_NAMESPACE
 
+void InGameGuiManager::chatMessage(
+	const std::string_view& text,
+	const std::string_view& author)
+{
+	if (m_pChatGui)
+		m_pChatGui->postMessage(text, author);
+}
+
 void InGameGuiManager::displayAlertText(
 	const std::string_view& text,
 	const float duration)
 {
-	if (!m_pHudGui)
-		return;
-
-	m_pHudGui->m_alertText = text;
-	m_pHudGui->m_fAlertTextTimer = duration;
+	if (m_pHudGui)
+	{
+		m_pHudGui->m_alertText = text;
+		m_pHudGui->m_fAlertTextTimer = duration;
+	}
 }
 
 void InGameGuiManager::setInteractionText(const std::vector<std::string>& vec)
@@ -26,6 +34,15 @@ void InGameGuiManager::setInteractionText(const std::vector<std::string>& vec)
 		m_pHudGui->m_vecInteractionTexts.push_back(vec);
 		m_pHudGui->m_vecInteractionTexts[lastEntry].push_back("\n");
 	}
+}
+
+void InGameGuiManager::ChatMessage(
+	const std::string_view& text,
+	const std::string_view& author)
+{
+	InGameGuiManager* v_pInGameGuiMgr = InGameGuiManager::GetInstance();
+	if (v_pInGameGuiMgr)
+		v_pInGameGuiMgr->chatMessage(text, author);
 }
 
 void InGameGuiManager::DisplayAlertText(const std::string_view& text, const float duration)
@@ -82,6 +99,20 @@ std::shared_ptr<ChatGui> InGameGuiManager::GetChatGui()
 		return v_pInGameGuiMgr->getChatGui();
 	else
 		return nullptr;
+}
+
+bool InGameGuiManager::isGuiHidden() const
+{
+	return m_bGuiHidden || m_bForceGuiHidden;
+}
+
+bool InGameGuiManager::IsGuiHidden()
+{
+	InGameGuiManager* v_pInGameGuiMgr = InGameGuiManager::GetInstance();
+	if (v_pInGameGuiMgr)
+		return v_pInGameGuiMgr->isGuiHidden();
+	else
+		return false;
 }
 
 SMSDK_END_NAMESPACE

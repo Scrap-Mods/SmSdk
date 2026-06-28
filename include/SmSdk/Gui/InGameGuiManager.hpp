@@ -16,9 +16,11 @@ class InGameGuiManager : public InGameGuiManagerInterface
 
 	SDK_PUB SMSDK_API static InGameGuiManager* GetInstance();
 
+	SDK_PUB SMSDK_API void chatMessage(const std::string_view& text, const std::string_view& author = "");
 	SDK_PUB SMSDK_API void displayAlertText(const std::string_view& text, const float duration = 4.0f);
 	SDK_PUB SMSDK_API void setInteractionText(const std::vector<std::string>& vec);
 
+	SDK_PUB SMSDK_API static void ChatMessage(const std::string_view& text, const std::string_view& author = "");
 	SDK_PUB SMSDK_API static void DisplayAlertText(const std::string_view& text, const float duration = 4.0f);
 	SDK_PUB SMSDK_API static void SetInteractionText(const std::vector<std::string>& vec);
 
@@ -30,10 +32,14 @@ class InGameGuiManager : public InGameGuiManagerInterface
 	SDK_PUB SMSDK_API static std::shared_ptr<class InventoryGui> GetInventoryGui();
 	SDK_PUB SMSDK_API static std::shared_ptr<class ChatGui> GetChatGui();
 
+	SDK_PUB SMSDK_API bool isGuiHidden() const;
+	SDK_PUB SMSDK_API static bool IsGuiHidden();
+
 	/* 0x0008 */ SDK_PUB bool m_bDefaultGuisInitialized;
-	/* 0x0009 */ SDK_PRI char pad_0x9[0x2];
-	/* 0x000B */ SDK_PUB bool m_bGuiHidden;
-	/* 0x000C */ SDK_PUB bool m_bGuiHiddenPrev;
+	/* 0x0009 */ SDK_PRI char pad_0x9[0x1];
+	/* 0x000A */ SDK_PUB bool m_bGuiHidden;
+	/* 0x000B */ SDK_PUB bool m_bForceGuiHidden;
+	/* 0x000C */ SDK_PRI bool m_bPrevForceGuiHidden;
 	/* 0x000D */ SDK_PRI char pad_0xD[0x3];
 	/* 0x0010 */ SDK_PUB std::shared_ptr<class InGameMainMenu2> m_pMainMenu;
 	/* 0x0020 */ SDK_PUB std::shared_ptr<class HudGui2> m_pHudGui;
@@ -66,8 +72,8 @@ class InGameGuiManager : public InGameGuiManagerInterface
 }; // Size: 0x1F0
 
 static_assert(offsetof(InGameGuiManager, InGameGuiManager::m_bDefaultGuisInitialized) == 0x8, "InGameGuiManager::m_bDefaultGuisInitialized: Incorrect offset");
-static_assert(offsetof(InGameGuiManager, InGameGuiManager::m_bGuiHidden) == 0xB, "InGameGuiManager::m_bGuiHidden: Incorrect offset");
-static_assert(offsetof(InGameGuiManager, InGameGuiManager::m_bGuiHiddenPrev) == 0xC, "InGameGuiManager::m_bGuiHiddenPrev: Incorrect offset");
+static_assert(offsetof(InGameGuiManager, InGameGuiManager::m_bGuiHidden) == 0xA, "InGameGuiManager::m_bGuiHidden: Incorrect offset");
+static_assert(offsetof(InGameGuiManager, InGameGuiManager::m_bForceGuiHidden) == 0xB, "InGameGuiManager::m_bForceGuiHidden: Incorrect offset");
 static_assert(offsetof(InGameGuiManager, InGameGuiManager::m_pMainMenu) == 0x10, "InGameGuiManager::m_pMainMenu: Incorrect offset");
 static_assert(offsetof(InGameGuiManager, InGameGuiManager::m_pHudGui) == 0x20, "InGameGuiManager::m_pHudGui: Incorrect offset");
 static_assert(offsetof(InGameGuiManager, InGameGuiManager::m_pInventory) == 0x30, "InGameGuiManager::m_pInventory: Incorrect offset");
