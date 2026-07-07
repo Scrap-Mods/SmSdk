@@ -1,4 +1,4 @@
-#include "SmSdk/InputManager.hpp"
+#include "SmSdk/Input/InputManager.hpp"
 
 SMSDK_BEGIN_NAMESPACE
 

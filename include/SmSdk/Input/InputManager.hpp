@@ -7,28 +7,28 @@
 
 SMSDK_BEGIN_NAMESPACE
 
-enum EKeyState : uint32_t
+enum class EKeyState : std::uint32_t
 {
-	EKeyState_None = 0,
+	EKeyState_None  = 0,
 	EKeyState_Press = 1,
-	EKeyState_Hold = 2
+	EKeyState_Hold  = 2
 };
 
-enum EMouseButton : uint32_t
+enum class EMouseButton : std::uint32_t
 {
-	EMouseButton_Left = 0,
-	EMouseButton_Right = 1,
-	EMouseButton_Middle = 2,
+	EMouseButton_Left    = 0,
+	EMouseButton_Right   = 1,
+	EMouseButton_Middle  = 2,
 	EMouseButton_Button1 = 3,
 	EMouseButton_Button2 = 4
 };
 
-enum EInputEventType : uint32_t
+enum class EInputEventType : std::uint32_t
 {
-	InputEventType_Keyboard = 0x0,
-	InputEventType_Mouse = 0x1,
-	InputEventType_MouseScroll = 0x2,
-	InputEventType_MouseMove = 0x3,
+	InputEventType_Keyboard    = 0,
+	InputEventType_Mouse       = 1,
+	InputEventType_MouseScroll = 2,
+	InputEventType_MouseMove   = 3
 };
 
 
