@@ -9,26 +9,26 @@ SMSDK_BEGIN_NAMESPACE
 
 enum class EKeyState : std::uint32_t
 {
-	EKeyState_None  = 0,
-	EKeyState_Press = 1,
-	EKeyState_Hold  = 2
+	None  = 0,
+	Press = 1,
+	Hold  = 2
 };
 
 enum class EMouseButton : std::uint32_t
 {
-	EMouseButton_Left    = 0,
-	EMouseButton_Right   = 1,
-	EMouseButton_Middle  = 2,
-	EMouseButton_Button1 = 3,
-	EMouseButton_Button2 = 4
+	Left    = 0,
+	Right   = 1,
+	Middle  = 2,
+	Button1 = 3,
+	Button2 = 4
 };
 
 enum class EInputEventType : std::uint32_t
 {
-	InputEventType_Keyboard    = 0,
-	InputEventType_Mouse       = 1,
-	InputEventType_MouseScroll = 2,
-	InputEventType_MouseMove   = 3
+	Keyboard    = 0,
+	Mouse       = 1,
+	MouseScroll = 2,
+	MouseMove   = 3
 };
 
 
@@ -84,7 +84,7 @@ class InputManager
 	/* 0x0654 */ SDK_PUB bool m_bMouseBtnPressStates[5];
 	/* 0x0659 */ SDK_PUB bool m_bMousePrevBtnPressStates[5];
 	/* 0x065E */ SDK_PRI char pad_0x65E[0x2];
-	/* 0x0660 */ SDK_PUB EMouseButton m_eMouseBtnStates[5];
+	/* 0x0660 */ SDK_PUB EKeyState m_eMouseBtnStates[5];
 	/* 0x0674 */ SDK_PRI char pad_0x674[0x4];
 	/* 0x0678 */ SDK_PUB std::deque<InputEvent> m_deqInputQueue;
 	/* 0x06A0 */ SDK_PRI char pad_0x6A0[0x4];

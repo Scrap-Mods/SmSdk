@@ -4,22 +4,22 @@ SMSDK_BEGIN_NAMESPACE
 
 bool InputManager::isKeyPressed(const char cKey) const
 {
-	return m_eKeyStates[cKey] == EKeyState_Press;
+	return m_eKeyStates[cKey] == EKeyState::Press;
 }
 
 bool InputManager::isKeyHeld(const char cKey) const
 {
-	return m_eKeyStates[cKey] == EKeyState_Hold;
+	return m_eKeyStates[cKey] == EKeyState::Hold;
 }
 
 bool InputManager::isMouseButtonPressed(const EMouseButton eBtn) const
 {
-	return m_eMouseBtnStates[eBtn] == EKeyState_Press;
+	return m_eMouseBtnStates[static_cast<std::uint32_t>(eBtn)] == EKeyState::Press;
 }
 
 bool InputManager::isMouseButtonHeld(const EMouseButton eBtn) const
 {
-	return m_eMouseBtnStates[eBtn] == EKeyState_Hold;
+	return m_eMouseBtnStates[static_cast<std::uint32_t>(eBtn)] == EKeyState::Hold;
 }
 
 bool InputManager::IsKeyPressed(const char cKey)
