@@ -92,31 +92,30 @@ using KeyCode = std::uint32_t;
 
 class KeyBindings
 {
-	/* 0x0000 */ SDK_PUB std::unordered_map<std::string, ActionCode> m_mapKeyActions;
-	/* 0x0040 */ SDK_PUB std::unordered_map<std::string, LuaActionCode> m_mapLuaKeyActions;
-	/* 0x0080 */ SDK_PUB std::map<ActionCode, LuaActionCode> m_mapActionToLuaAction;
-	/* 0x0090 */ SDK_PUB std::map<ModifierKey, std::unordered_map<KeyCode, ActionCode>> m_mapKeyboardBindings;
-	/* 0x00A0 */ SDK_PUB std::map<ModifierKey, std::unordered_map<KeyCode, ActionCode>> m_mapMouseBindings;
-	/* 0x00B0 */ SDK_PUB std::map<ModifierKey, ActionCode> m_mapPositiveScrollBindings;
-	/* 0x00C0 */ SDK_PUB std::map<ModifierKey, ActionCode> m_mapNegativeScrollBindings;
-	/* 0x00D0 */ SDK_PUB std::map<ModifierKey, std::unordered_map<KeyCode, LuaActionCode>> m_mapInteractableKeyboardBindings;
-	/* 0x00E0 */ SDK_PUB std::map<ModifierKey, std::unordered_map<KeyCode, LuaActionCode>> m_mapInteractableMouseBindings;
-	/* 0x00F0 */ SDK_PUB std::map<ModifierKey, LuaActionCode> m_mapInteractablePositiveScrollBindings;
-	/* 0x0100 */ SDK_PUB std::map<ModifierKey, LuaActionCode> m_mapInteractableNegativeScrollBindings;
+	/* 0x0000 */ SDK_MEM_PUB std::unordered_map<std::string, ActionCode> m_mapKeyActions;
+	/* 0x0040 */ SDK_MEM_PUB std::unordered_map<std::string, LuaActionCode> m_mapLuaKeyActions;
+	/* 0x0080 */ SDK_MEM_PUB std::map<ActionCode, LuaActionCode> m_mapActionToLuaAction;
+	/* 0x0090 */ SDK_MEM_PUB std::map<ModifierKey, std::unordered_map<KeyCode, ActionCode>> m_mapKeyboardBindings;
+	/* 0x00A0 */ SDK_MEM_PUB std::map<ModifierKey, std::unordered_map<KeyCode, ActionCode>> m_mapMouseBindings;
+	/* 0x00B0 */ SDK_MEM_PUB std::map<ModifierKey, ActionCode> m_mapPositiveScrollBindings;
+	/* 0x00C0 */ SDK_MEM_PUB std::map<ModifierKey, ActionCode> m_mapNegativeScrollBindings;
+	/* 0x00D0 */ SDK_MEM_PUB std::map<ModifierKey, std::unordered_map<KeyCode, LuaActionCode>> m_mapInteractableKeyboardBindings;
+	/* 0x00E0 */ SDK_MEM_PUB std::map<ModifierKey, std::unordered_map<KeyCode, LuaActionCode>> m_mapInteractableMouseBindings;
+	/* 0x00F0 */ SDK_MEM_PUB std::map<ModifierKey, LuaActionCode> m_mapInteractablePositiveScrollBindings;
+	/* 0x0100 */ SDK_MEM_PUB std::map<ModifierKey, LuaActionCode> m_mapInteractableNegativeScrollBindings;
 }; // Size: 0x110
 
-static_assert(offsetof(KeyBindings, KeyBindings::m_mapKeyActions) == 0x0, "KeyBindings::m_mapKeyActions: Incorrect offset");
-static_assert(offsetof(KeyBindings, KeyBindings::m_mapLuaKeyActions) == 0x40, "KeyBindings::m_mapLuaKeyActions: Incorrect offset");
-static_assert(offsetof(KeyBindings, KeyBindings::m_mapActionToLuaAction) == 0x80, "KeyBindings::m_mapActionToLuaAction: Incorrect offset");
-static_assert(offsetof(KeyBindings, KeyBindings::m_mapKeyboardBindings) == 0x90, "KeyBindings::m_mapKeyboardBindings: Incorrect offset");
-static_assert(offsetof(KeyBindings, KeyBindings::m_mapMouseBindings) == 0xA0, "KeyBindings::m_mapMouseBindings: Incorrect offset");
-static_assert(offsetof(KeyBindings, KeyBindings::m_mapPositiveScrollBindings) == 0xB0, "KeyBindings::m_mapPositiveScrollBindings: Incorrect offset");
-static_assert(offsetof(KeyBindings, KeyBindings::m_mapNegativeScrollBindings) == 0xC0, "KeyBindings::m_mapNegativeScrollBindings: Incorrect offset");
-static_assert(offsetof(KeyBindings, KeyBindings::m_mapInteractableKeyboardBindings) == 0xD0, "KeyBindings::m_mapInteractableKeyboardBindings: Incorrect offset");
-static_assert(offsetof(KeyBindings, KeyBindings::m_mapInteractableMouseBindings) == 0xE0, "KeyBindings::m_mapInteractableMouseBindings: Incorrect offset");
-static_assert(offsetof(KeyBindings, KeyBindings::m_mapInteractablePositiveScrollBindings) == 0xF0, "KeyBindings::m_mapInteractablePositiveScrollBindings: Incorrect offset");
-static_assert(offsetof(KeyBindings, KeyBindings::m_mapInteractableNegativeScrollBindings) == 0x100, "KeyBindings::m_mapInteractableNegativeScrollBindings: Incorrect offset");
-
-static_assert(sizeof(KeyBindings) == 0x110, "KeyBindings: Incorrect Size");
+SMSDK_CHECK_MEMBER_OFFSET(KeyBindings, m_mapKeyActions, 0x0);
+SMSDK_CHECK_MEMBER_OFFSET(KeyBindings, m_mapLuaKeyActions, 0x40);
+SMSDK_CHECK_MEMBER_OFFSET(KeyBindings, m_mapActionToLuaAction, 0x80);
+SMSDK_CHECK_MEMBER_OFFSET(KeyBindings, m_mapKeyboardBindings, 0x90);
+SMSDK_CHECK_MEMBER_OFFSET(KeyBindings, m_mapMouseBindings, 0xA0);
+SMSDK_CHECK_MEMBER_OFFSET(KeyBindings, m_mapPositiveScrollBindings, 0xB0);
+SMSDK_CHECK_MEMBER_OFFSET(KeyBindings, m_mapNegativeScrollBindings, 0xC0);
+SMSDK_CHECK_MEMBER_OFFSET(KeyBindings, m_mapInteractableKeyboardBindings, 0xD0);
+SMSDK_CHECK_MEMBER_OFFSET(KeyBindings, m_mapInteractableMouseBindings, 0xE0);
+SMSDK_CHECK_MEMBER_OFFSET(KeyBindings, m_mapInteractablePositiveScrollBindings, 0xF0);
+SMSDK_CHECK_MEMBER_OFFSET(KeyBindings, m_mapInteractableNegativeScrollBindings, 0x100);
+SMSDK_CHECK_STRUCT_SIZE(KeyBindings, 0x110);
 
 SMSDK_END_NAMESPACE

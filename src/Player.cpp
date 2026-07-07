@@ -1,6 +1,6 @@
 #include "SmSdk/Player.hpp"
 
-#include "SmSdk/CharacterManager.hpp"
+#include "SmSdk/Character/CharacterManager.hpp"
 #include "SmSdk/config.hpp"
 
 SMSDK_USE_NAMESPACE
