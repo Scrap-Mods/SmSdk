@@ -15,9 +15,9 @@ OptionsItemSlider::OptionsItemSlider(
 	: OptionsItemBase()
 	, m_pSlider(nullptr)
 	, m_pValueTextBox(nullptr)
-	, m_uSteps(iScrollRange)
 	, m_fMinValue(fMinValue)
 	, m_fMaxValue(fMaxValue)
+	, m_uSteps(iScrollRange)
 {
 	this->initializeSlider(pWidget, caption);
 	m_pSlider->setScrollRange(m_uSteps + 1);
@@ -41,15 +41,13 @@ void OptionsItemSlider::updateValueText()
 	m_pValueTextBox->setCaption(std::to_string(m_pSlider->getScrollPosition()));
 }
 
-inline static float lerp(float a, float b, float f) noexcept
-{
-	return a + f * (b - a);
-}
-
 float OptionsItemSlider::getFraction() const
 {
-	const float fFraction = float(m_pSlider->getScrollPosition()) / float(m_uSteps);
-	return lerp(m_fMinValue, m_fMaxValue, fFraction);
+	const float v_fFraction = float(m_pSlider->getScrollPosition()) / float(m_uSteps);
+	return std::lerp(m_fMinValue, m_fMaxValue, v_fFraction);
 }
+
+void OptionsItemSlider::update()
+{}
 
 #endif

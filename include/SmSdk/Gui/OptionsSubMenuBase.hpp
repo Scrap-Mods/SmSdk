@@ -21,10 +21,13 @@ class OptionsSubMenuBase
 	SDK_PUB SMSDK_API void onScroll(MyGUI::Widget* pCaller, int iScrollVal);
 	SDK_PUB SMSDK_API void updateScrollArea();
 	SDK_PUB SMSDK_API void updateScrollAreaAndScrollBar();
-	//Does not update the scroll bar
-	SDK_PUB SMSDK_API void clearSilent();
-	SDK_PUB SMSDK_API void clear();
+	SDK_PUB SMSDK_API void clear(const bool clearScrollBar);
 #endif
+
+	SDK_PUB SMSDK_API MyGUI::Widget* getSubMenuWidget();
+	SDK_PUB SMSDK_API VerticalStackBox* getLeftStackBox();
+	SDK_PUB SMSDK_API VerticalStackBox* getRightStackBox();
+	SDK_PUB SMSDK_API void addOptionItem(const std::shared_ptr<OptionsItemBase>& item);
 
 	SDK_PUB SMSDK_API virtual ~OptionsSubMenuBase() = default;
 

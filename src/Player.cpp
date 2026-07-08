@@ -25,6 +25,11 @@ std::uint16_t Player::getWorldId() const
 	return m_uWorldId;
 }
 
+std::string_view Player::getName() const
+{
+	return m_name;
+}
+
 std::shared_ptr<Character> Player::getCharacter() const
 {
 	return CharacterManager::GetCharacter(m_uCharacterId);

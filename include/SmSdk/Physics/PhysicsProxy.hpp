@@ -4,22 +4,26 @@
 
 SMSDK_BEGIN_NAMESPACE
 
-enum class PhysicsProxyType : std::uint8_t
+enum class EPhysicsProxyType : std::uint8_t
 {
-	Border        = 1,
-	TerrainGround = 2,
-	TerrainAsset  = 3,
-	Shape         = 4,
-	Joint         = 5,
-	Lift          = 6,
-	Character     = 7,
-	Harvestable   = 9,
-	AreaTrigger   = 11
+	Limiter        = 1,
+	TerrainSurface = 2,
+	TerrainAsset   = 3,
+	Body           = 4,
+	BodyJoint      = 5,
+	Lift           = 6,
+	Character      = 7,
+	Joint          = 8,
+	Harvestable    = 9,
+	Vision         = 10,
+	Ragdoll        = 12,
+	VoxelTerrain   = 13,
+	TunnelCatcher  = 14
 };
 
 __declspec(align(16)) class PhysicsProxy
 {
-	SDK_PUB virtual PhysicsProxyType getProxyType() { return PhysicsProxyType(0); /* IMPLEMENTED BY THE GAME */ }
+	SDK_PUB virtual EPhysicsProxyType getProxyType() { return EPhysicsProxyType(0); /* IMPLEMENTED BY THE GAME */ }
 
 	/* 0x0008 */ SDK_MEM_PRI char pad_0x8[0x8];
 	/* 0x0010 */ SDK_MEM_PUB btRigidBody* m_pDynamicsWorldRigidBody;

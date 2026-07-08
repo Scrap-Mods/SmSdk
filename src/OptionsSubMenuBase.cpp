@@ -90,18 +90,35 @@ void OptionsSubMenuBase::updateScrollAreaAndScrollBar()
 	m_pScrollBar->setVisible(m_iScrollValue > 0);
 }
 
-void OptionsSubMenuBase::clearSilent()
+void OptionsSubMenuBase::clear(const bool clearScrollBar)
 {
 	this->cleanOptionItems();
 
 	m_leftStackBox.clearItems();
 	m_rightStackBox.clearItems();
+
+	if (clearScrollBar)
+		this->updateScrollAreaAndScrollBar();
 }
 
-void OptionsSubMenuBase::clear()
+MyGUI::Widget* OptionsSubMenuBase::getSubMenuWidget()
 {
-	this->clearSilent();
-	this->updateScrollAreaAndScrollBar();
+	return m_pSubMenuWidget;
+}
+
+VerticalStackBox* OptionsSubMenuBase::getLeftStackBox()
+{
+	return &m_leftStackBox;
+}
+
+VerticalStackBox* OptionsSubMenuBase::getRightStackBox()
+{
+	return &m_rightStackBox;
+}
+
+void OptionsSubMenuBase::addOptionItem(const std::shared_ptr<OptionsItemBase>& item)
+{
+	m_vecOptionItems.emplace_back(item);
 }
 
 void OptionsSubMenuBase::initialize(MyGUI::Widget* pParent)
