@@ -1,4 +1,4 @@
-#include "SmSdk/CharacterManager.hpp"
+#include "SmSdk/Character/CharacterManager.hpp"
 #include "SmSdk/MyPlayer.hpp"
 #include "SmSdk/config.hpp"
 
